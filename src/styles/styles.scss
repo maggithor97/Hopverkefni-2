@@ -1,8 +1,20 @@
 @import "config";
+$page: 1200px;
+$font-main: "Times New Roman", Times, serif;
+$white: #fcffd2;
+$grey: #ccc;
+$grey2: #aaa;
+$grey3: #999;
+$black: #000;
+$green: #2d2;
+$green2: #1a1;
+$strangeColor: #cc9694;
+
 
 * {
   padding: 0;
   margin: 0;
+  transition: 0.2s ease-in-out;
 }
 
 *,
@@ -11,9 +23,44 @@
   box-sizing: inherit;
 }
 
-$font-main : 'Times New Roman', Times, serif;;
+main {
+  max-width: $page;
+  text-align: center;
+  margin: 0 auto;
+  
+}
 
-html { /* stylelint-disable-line */
+.header {
+  background-image: url("../img/header.jpg");
+  font-size: 2rem;
+  min-height: 25vh;
+  width: 100%;
+  padding: 1rem;
+   margin-bottom: 1rem;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  box-shadow:inset 0 0 0 2000px rgba(255, 255, 255, 0.3);
+  color: $black;
+
+ }
+
+ .header__h1 {
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 3rem;
+ }
+
+ .header__h4 {
+  width: 100%;
+  text-align: center;
+  font-size: 1em;
+  margin-top: 3rem;
+  margin-bottom: -0.9rem;
+ }
+
+html {
+  /* stylelint-disable-line */
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: scroll; // alltaf hafa y skrollbar
@@ -22,8 +69,42 @@ html { /* stylelint-disable-line */
   font-size: 16px;
 }
 
-img { /* stylelint-disable-line */
+img {
+  /* stylelint-disable-line */
   max-width: 100%;
 }
 
+.btn {
+  margin: 1em 0.5em 1em 0.5em;
+  border: none;
+  background: $grey;
+  box-shadow: 0 0.1rem $grey2;
+  padding: 0.6em 1.2em 0.6em 1.2em;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background: $grey2;
+  box-shadow: 0 0.1rem $grey3;
+  }
+
+.btn:active {
+  background-color: $green;
+  box-shadow: 0 0.1rem $grey2;
+}
+.cards {
+  display: flex;
+  max-width: $page;
+  justify-content: center;
+}
+
+.grid__row {
+  flex-direction: row;
+}
+
+.grid__col {
+  flex-direction: column;
+}
+
 // TODO import
+
