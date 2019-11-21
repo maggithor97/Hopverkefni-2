@@ -1,0 +1,38 @@
+$max-width: 1200px;
+$gutter: 20px;
+//  Litir
+$quoteGrey: #999;
+//  Fonts
+//$mainFont:
+$codeFont: monospace;
+
+
+.fyrirlestur {
+    display: flex;
+    flex-direction: column;
+    //border: black solid 2px;
+    margin: 0 auto;
+    width: 60vw;
+}
+
+.fyrirlestur__div{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    //border: blue solid 2px;
+    text-align: left;
+
+}
+.fyrirlestur__myndband {
+   
+}
+
+.fyrirlestur__quote {
+    background-color: $quoteGrey;
+}
+.fyrirlestur__mynd__texti{
+    margin-top: 0em;
+}
+
+.fyrirlestur__div__code {
+    font-family: $codeFont;
+}
