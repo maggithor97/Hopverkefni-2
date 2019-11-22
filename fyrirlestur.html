@@ -1,10 +1,56 @@
 <!DOCTYPE html>
 <html lang="is">
+
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="grid.css">
+  <link href="dist\styles.css" rel="stylesheet">
   <title>Fyrirlestur</title>
 </head>
-<body class="lecture-page">
 
+<body class="lecture-page">
+  <header class="header">
+    <h4 class="header__h4"></h4>
+    <h1 class="header__h1"></h1>
+  </header>
+  <main>
+    <section class="fyrirlestur">
+        <!-- Texti -->
+      <div class="fyrirlestur__div">Hér kemur texti:    "Frá örófi alda höfum við sagt hvort öðru sögur. Í fyrstu geymdar í minni
+        einstaklinga, seinna skrifaðar á skinn eða pappír, síðan prentaðar með prentvél Gutenbergs og núna fjölfaldaðar
+        í prentsmiðjum.\nPrentaður texti er í eðli sínu fastur. Við höfum blaðsíður í ákveðinni stærð sem textinn er
+        prentaður á og eftir það eru engar breytingar mögulegar. En hvað ef svo væri ekki?\nÁrið 1941 gaf Jorge Luis
+        Borges út smásöguna „The Garden of Forking Paths” sem segir frá höfundi sem ætlar að skrifa stóra og flókna bók
+        ásamt því að búa til stórt og flókið völundarhús. Síðar kemur í ljós að bókin og völundarhúsið er sami hluturinn
+        en sagan lýsir heim þar sem allar mögulegar niðurstöður atburða eiga sér stað samtímis. Þessi smásaga er talin
+        kynna fyrst hugmyndina um HyperText.\nVið lok seinna stríðs skrifaði Vennevar Bush greinina „As We May Think“ í
+        Atlantic Monthly þar sem hann lýsir Memex. Memex er tæki sem leyfir einstakling að halda utan um sitt eigið safn
+        af upplýsingum. Það leyfir flokkun, athugasemdir og tengingar við annað efni svo hægt sé að fletta upp og leita
+        ásamt því að deila með öðrum á einfaldan hátt. Sannkallað töfratæki sem Bush gerði ráð fyrir að myndi gjörbreyta
+        heiminum."
+      </div>
+        <!-- Quote -->
+      <div class="fyrirlestur__div fyrirlestur__quote">Hér er quote:    The future is already here — it's just not very
+        evenly distributed.",
+      </div>
+        <!-- Mynd og texti -->
+      <div class="fyrirlestur__div fyrirlestur__mynd">
+        <img src="img/thumb1.jpg"></img>
+        <p class="fyrirlestur__mynd__texti">Þetta er mynd</p>
+      </div>
+        <!-- Youtube -->
+      <iframe class="fyrirlestur__div fyrirlestur__myndband" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+        <!-- Listi -->
+      <ul class="fyrirlestur__div">
+        <li>Hér</li>
+        <li>Er</li>
+        <li>Listi</li>
+      </ul>
+        <!-- Kóði -->
+        <p class="fyrirlestur__div fyrirlestur__div__code ">Hér er kóði:   "### Markdown fyrirsögn\n\nTexti sem inniheldur **feitletraðan** og\n_skáletraðan_ texta\nmeð [tengli](http://example.org).\n\n* Listi\n* af\n* orðum"
+          </p>
+    </section>
+  </main>
 </body>
+
 </html>
