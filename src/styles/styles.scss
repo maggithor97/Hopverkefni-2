@@ -23,11 +23,20 @@ $gutter: 20px;
   box-sizing: inherit;
 }
 
-main {
-  max-width: $page;
-  text-align: center;
-  margin: 0 auto;
+html {
+  /* stylelint-disable-line */
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: scroll; // alltaf hafa y skrollbar
+
+  //font-family: $font-main;
+  font-size: 16px;
 }
+
+main {
+  padding: 0 20px 0 20px;
+  margin: 0 auto;
+  max-width: 1200px; }
 
 .header {
   background-image: url("../img/header.jpg");
@@ -57,19 +66,9 @@ main {
   margin-bottom: -0.9rem;
 }
 
-html {
-  /* stylelint-disable-line */
-  box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: scroll; // alltaf hafa y skrollbar
-
-  //font-family: $font-main;
-  font-size: 16px;
-}
-
-img {
-  /* stylelint-disable-line */
-  max-width: 100%;
+.body__takkar {
+  display: flex;
+  justify-content: center;
 }
 
 .btn {
@@ -90,44 +89,92 @@ img {
   background-color: $green;
   box-shadow: 0 0.1rem $green2;
 }
-.cards {
-  max-width: $page;
-  /*display: flex;
-  justify-content: center;*/
+
+  
+  // TODO import
+
+
+@media (max-width: 1200px) {
+  .container {
+   margin: 0;
+  }
+} 
+@media (min-width: 1200px) {
+.container {
+    margin-right: -$gutter;
+    margin-left: -$gutter;} 
+  }
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-@media (min-width: 800px) {
-  .card__row {
-    width: $page;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    padding: $gutter;
-    margin-top: $gutter;
-    justify-content: space-between !important;
-    height: 380px;
-    border: 5px dashed #1000a3;
-/*
-    justify-content: flex-start;
-  */}
-  .card__col {
-    width: 32.3%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding-left: $gutter;
-    background: #2d2;
-     max-width: 100%;
-  }
-  
-  .course__col {
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
+.card {
+  min-height: 300px;
+  border: 2px dashed #a30000;
+  // above lines are temporary
+ // padding: $gutter 0 $gutter 0;
+  margin-top: $gutter;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: space-between;
+  background: $grey3;
+}
 
-  // TODO import
+
+.index__image {
+  position: relative;
+//  bottom: 0;
+}
+
+.index__image img:hover {
+  display: none;
+}
+
+.index__image img {
+  position: relative;
+ // bottom: 0;
+  width: 100%;
+  max-height: 100%;
+  margin-bottom: -10%;
+}
+
+.index__card__bottom {
+margin-top: auto;
+min-height: 70px;
+padding: 1rem;
+}
+
+.index__card__bottom h1 {
+font-size: 2rem;
+}
+
+.index__card__bottom button {
+  text-decoration: none;
+  background: rgb(170, 170, 170);
+}
+
+.index__card__bottom button:hover {
+  background: orange;
+}
+
+@media (max-width: 500px) {
+  .card {
+    width: 100%;
+  }
+}
+
+@media (min-width: 501px) {
+  .card {
+    width: 48.5%;
+  }
+}
+
+@media (min-width: 801px) {
+  .card {
+    width: 32.1%;
+  }
 }
