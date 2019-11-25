@@ -25,5 +25,14 @@
     "sass-watch": "^0.1.0",
     "stylelint": "^9.10.1",
     "stylelint-config-primer": "^2.2.11"
-  }
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maggithor97/Hopverkefni-2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maggithor97/Hopverkefni-2/issues"
+  },
+  "homepage": "https://github.com/maggithor97/Hopverkefni-2#readme"
 }
