@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="grid.css">
   <link href="dist\styles.css" rel="stylesheet">
   <title>Hópverkefni 2</title>
@@ -14,14 +15,15 @@
     <h1 class="header__h1">Fyrirlestrar</h1>
   </header>
   <main>
+
     <section class="body">
-      <div class="body__takkar">
-        <button class="btn">HTML</button>
-        <button class="btn">CSS</button>
-        <button class="btn">JavaScript</button>
+      <div class="btn__container">
+        <button class="btn" id="htmlbtn">HTML</button>
+        <button class="btn" id="cssbtn">CSS</button>
+        <button class="btn" id="jsbtn">JavaScript</button>
       </div>
-   
-    
+
+
       <div class="container">
         <div class="card">
           <div class="index__image">
@@ -34,10 +36,29 @@
         </div>
         <div class="card">
           <div class="index__image">
+            <img src="img/thumb2.jpg" alt="thumbnail">
+          </div>
+          <div class="index__card__bottom">
+            <h4>HTML</h4>
+            <h1>Sagan</h1>
+          </div>
+        </div>
+        <div class="card">
+          <div class="index__image">
+            <img src="img/thumb3.jpg" alt="thumbnail">
+          </div>
+          <div class="index__card__bottom">
+            <h4>HTML</h4>
+            <h1>Sagan</h1>
+          </div>
+        </div>
+        <div class="card">
+          <div class="index__image">
           </div>
           <div class="index__card__bottom">
           </div>
         </div>
+
         <div class="card">
           <div class="index__image">
           </div>
@@ -121,9 +142,9 @@
         </div>
       </div>
 
- </section>
+    </section>
   </main>
-  <script src="styles/index.js"></script>
+  <script src="src/index.js"></script>
 </body>
 
 </html>

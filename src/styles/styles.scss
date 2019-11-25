@@ -1,7 +1,7 @@
 @import "config";
 @import "fyrirlestur";
 $page: 1200px;
-$font-main: "Times New Roman", Times, serif;
+$index-font: "Courier New", Courier, monospace;
 $white: #fcffd2;
 $grey: #ccc;
 $grey2: #aaa;
@@ -30,19 +30,20 @@ html {
   overflow-x: hidden;
   overflow-y: scroll; // alltaf hafa y skrollbar
 
-  //font-family: $font-main;
+  font-family: $index-font;
   font-size: 16px;
 }
 
 main {
-  padding: 0 20px 0 20px;
+  //padding: 0 20px 0 20px;
   margin: 0 auto;
-  max-width: 1200px; }
+  // max-width: 1200px;
+}
 
 .header {
   background-image: url("../img/header.jpg");
   font-size: 2rem;
-  min-height: 25vh;
+  min-height: 30vh;
   width: 100%;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -53,21 +54,24 @@ main {
 }
 
 .header__h1 {
-  width: 100%;
   text-align: center;
-  font-size: 2em;
-  margin-bottom: 3rem;
+  //font-size: 2em;
+  font-size: 12vw;
 }
 
 .header__h4 {
-  width: 100%;
   text-align: center;
-  font-size: 1em;
-  margin-top: 3rem;
-  margin-bottom: -0.9rem;
+  //font-size: 1em;
+  //margin-top: 3rem;
+  //margin-bottom: -0.9rem;
+
+  margin-top: min(10vw);
+  font-size: 6vw;
+  margin-bottom: -2.5vw;
 }
 
-.body__takkar {
+
+.btn__container {
   display: flex;
   justify-content: center;
 }
@@ -86,49 +90,47 @@ main {
   box-shadow: 0 0.1rem $grey3;
 }
 
-.btn:active {
+.btn:active,
+.btn__active,
+.btn__active:hover {
   background-color: $green;
   box-shadow: 0 0.1rem $green2;
 }
 
-  
-  // TODO import
-
-
-@media (max-width: 1200px) {
-  .container {
-   margin: 0;
-  }
-} 
-@media (min-width: 1200px) {
-.container {
-    margin-right: -$gutter;
-    margin-left: -$gutter;} 
-  }
+// TODO import
 
 .container {
+  max-width: 1200px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
+@media (max-width: 1240px) {
+  .container {
+    margin-right: $gutter;
+    margin-left: $gutter;
+  }
+}
+@media (min-width: 1240px) {
+  .container {
+    margin: 0 calc(50% - 600px);
+  }
+}
 .card {
-  min-height: 300px;
-  border: 2px dashed #a30000;
-  // above lines are temporary
- // padding: $gutter 0 $gutter 0;
+  height: 300px;
   margin-top: $gutter;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-content: space-between;
   background: $grey3;
-}
-
+    width: 100%;
+    max-height: 66vw;
+} 
 
 .index__image {
   position: relative;
-//  bottom: 0;
 }
 
 .index__image img:hover {
@@ -137,45 +139,46 @@ main {
 
 .index__image img {
   position: relative;
- // bottom: 0;
+  //border: 3px dashed rgb(137, 0, 155);
   width: 100%;
   max-height: 100%;
   margin-bottom: -10%;
 }
 
 .index__card__bottom {
-margin-top: auto;
-min-height: 70px;
-padding: 1rem;
+  margin-top: auto;
+  padding-left: 1rem;
 }
 
 .index__card__bottom h1 {
-font-size: 2rem;
-}
-
-.index__card__bottom button {
-  text-decoration: none;
-  background: rgb(170, 170, 170);
-}
-
-.index__card__bottom button:hover {
-  background: orange;
+  font-size: 2rem;
 }
 
 @media (max-width: 500px) {
-  .card {
-    width: 100%;
-  }
+
+
 }
 
 @media (min-width: 501px) {
   .card {
     width: 48.5%;
+    max-height: 48vw;
   }
 }
 
 @media (min-width: 801px) {
   .card {
     width: 32.1%;
+    max-height: 26vw;
   }
+.header__h1 {
+  font-size: 2em;
+}
+
+.header__h4 {
+  font-size: 1em;
+  margin-top: 3rem;
+  margin-bottom: -0.9rem;
+}
+
 }
