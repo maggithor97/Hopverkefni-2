@@ -80,21 +80,21 @@ main {
   margin: 1em 0.5em 1em 0.5em;
   border: none;
   background: $grey;
-  box-shadow: 0 0.1rem $grey2;
+  box-shadow: 0.1rem 0.1rem $grey2;
   padding: 0.6em 1.2em 0.6em 1.2em;
   border-radius: 5px;
 }
 
 .btn:hover {
   background: $grey2;
-  box-shadow: 0 0.1rem $grey3;
+  box-shadow: 0.1rem 0.1rem $grey3;
 }
 
 .btn:active,
 .btn__active,
 .btn__active:hover {
   background-color: $green;
-  box-shadow: 0 0.1rem $green2;
+  box-shadow: 0.1rem 0.1rem $green2;
 }
 
 // TODO import
