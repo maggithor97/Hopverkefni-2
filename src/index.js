@@ -1,11 +1,11 @@
-//import List from './lib/list';
-//importScripts(fyrirlestur);
- 
-
- //indicates active buttons
+/*import List from './lib/list';
+ */
+// Global variables to be used by more than 1 function:
+// 1. indicates active buttons, used by more than 1 function
 let activebtns = [0, 0, 0];
-
-// array of the buttons
+// 2. Fetched array of data from Lectures.json
+let lectures;
+// 3. array of the buttons
 const button = [
   (htmlbtn = document.getElementById('htmlbtn')),
   (cssbtn = document.getElementById('cssbtn')),
@@ -20,41 +20,92 @@ document.addEventListener('DOMContentLoaded', () => {
   const isLecturePage = page.classList.contains('lecture-page');
   event.preventDefault();
 
-  if (isLecturePage) {  
+  if (isLecturePage) {
     //  Fetchar og lætur búa til fyrirlesturs síðu
     fetch('lectures.json')
-    .then((result) => {
-      if (!result.ok) {
-        throw new Error('Non 200 status');
-      }
-      return result.json();
-    })
-    .then(data => buaTilFyrirlestur(data.lectures, fyrirlesturNumer))
-    .catch(error => console.error(error));
-
+      .then(result => {
+        if (!result.ok) {
+          throw new Error('Non 200 status');
+        }
+        return result.json();
+      })
+      .then(data => buaTilFyrirlestur(data, fyrirlesturNumer))
+      .catch(error => console.error(error));
   } else {
-    
-    //const list = new List();
-    //list.load();
+    // const list = new List();
+    // list.load();
 
     //  Fetchar og lætur búa til index síðu
     fetch('lectures.json')
-  .then((result) => {
-    if (!result.ok) {
-      throw new Error('Non 200 status');
-    }
-    return result.json();
-  })
-  .then(data => buaTilForsidu(data.lectures))
-  .catch(error => console.log(error));
+      .then(result => {
+        if (!result.ok) {
+          throw new Error('Non 200 status');
+        }
+        return result.json();
+      })
+      .then(data => getdata(data.lectures))
+      .catch(error => console.error(error));
   }
 });
 
+function getdata(dataArray) {
+  lectures = dataArray;
+  buaTilForsidu();
+}
+
 //  Hérna búum við til forsíðuna
+function buaTilForsidu() {
+  let card, image, img, box, h4, h1, flag;
+  const container = document.querySelector('.container');
+  container.innerHTML = ''; // Clearing the html from previous call
+  for (let i = 0; i < lectures.length; flag = 0, i++) {
+    flag = isrelevant(i);
 
-function buaTilForsidu(data) {
-  //console.log(data.lectures[0]);
+    if (!flag) continue;
+    img = el('img');
+    if (lectures[i].thumbnail) {
+      img.src = lectures[i].thumbnail;
+      img.alt = 'Thumbnail';
+    }
+    image = el('div', img);
+    image.classList.add('index__image');
 
+    h4 = el('h4', lectures[i].category);
+    h1 = el('h1', lectures[i].title);
+    box = el('div', h4, h1);
+    box.classList.add('index__card__bottom');
+
+    card = el('div', image, box);
+    card.classList.add('card');
+    container.appendChild(card);
+  }
+}
+
+// helper function for preparing elements
+function el(name, ...children) {
+  const element = document.createElement(name);
+  for (const child of children) {
+    //for (let i = 0; i < arguments.length; i++) {
+
+    if (typeof child === 'string') {
+      element.appendChild(document.createTextNode(child));
+    } else {
+      element.appendChild(child);
+    }
+  }
+  return element;
+}
+
+// selecting if card should appear on the page
+function isrelevant(i) {
+  const category = ['html', 'css', 'javascript'];
+  var totalActiveBtns = activebtns.reduce((a, b) => a + b);
+  if (totalActiveBtns === 1 || totalActiveBtns === 2) {
+    for (let j = 0; j < 3; j++)
+      if (lectures[i].category === category[j])
+        if (activebtns[j]) return 1;
+        else return 0;
+  } else return 1;
 }
 /*
 // add event listeners for the buttons
@@ -71,8 +122,6 @@ console.log(button);
 // set button active color on/off
 function clickHandler(btntype) {
   activebtns[btntype] = activebtns[btntype] === 1 ? 0 : 1;
-  var totalActiveBtns = activebtns.reduce((a, b) => a + b);
-  console.log('active buttons: ' + totalActiveBtns);
   for (let i = 0; i < 3; i++) {
     if (activebtns[i] === 1) {
       if (!button[i].classList.contains('btn__active'))
@@ -82,7 +131,7 @@ function clickHandler(btntype) {
         button[i].classList.toggle('btn__active');
     }
   }
-
+  buaTilForsidu();
 }
 
 //  Hjálparfall
@@ -120,7 +169,7 @@ function buaTilFyrirlestur(lectures, i) {
   section.classList.add('fyrirlestur');
   let fLesturLengd = lectures[i].content.length;
 
-  // Loop'um í gegnum allt contentið  
+  // Loop'um í gegnum allt contentið
   for(let j = 0; j < fLesturLengd; j++){
     let element = el('div');
     let x = lectures[i].content[j].type;
@@ -129,7 +178,7 @@ function buaTilFyrirlestur(lectures, i) {
       element.src = lectures[i].content[j].data;
       element.frameborder = "0";
       element.allowfullscreen = "0";
-    } else 
+    } else
     if (x == 'text') {
       element = el('p');
       element.innerHTML = lectures[i].content[j].data;
@@ -148,19 +197,19 @@ function buaTilFyrirlestur(lectures, i) {
     console.log(document.getElementById('lecture-page'));
   }
 
-  
+
 
 
 
 function hreinsaSidu() {
-  { 
-    var e = document.querySelector('.body'); 
-    
-    //e.firstElementChild can be used. 
-    var child = e.lastElementChild;  
-    while (child) { 
-        e.removeChild(child); 
-        child = e.lastElementChild; 
-    } 
-} 
+  {
+    var e = document.querySelector('.body');
+
+    //e.firstElementChild can be used.
+    var child = e.lastElementChild;
+    while (child) {
+        e.removeChild(child);
+        child = e.lastElementChild;
+    }
+}
 }
