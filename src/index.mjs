@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const isLecturePage = page.classList.contains('lecture-page');
   event.preventDefault();
 
-  if (isLecturePage) {
-    console.log('line 26 in index.mjs');
+ if (isLecturePage) {
+    console.log('line 28 in index.mjs');
     buaTilFyrirlestur(5);
 return;
     // if (isLecturePage) {
