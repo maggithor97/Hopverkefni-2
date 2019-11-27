@@ -6,7 +6,9 @@ $quoteGrey: #999;
 //$mainFont:
 $codeFont: monospace;
 
-
+.clear {
+    display: none;
+}
 .fyrirlestur {
     display: flex;
     flex-direction: column;
@@ -22,8 +24,8 @@ $codeFont: monospace;
     text-align: left;
 
 }
-.fyrirlestur__myndband {
-   
+.fyrirlestur__mynd {
+    //Eftir að vinna
 }
 
 .fyrirlestur__quote {
