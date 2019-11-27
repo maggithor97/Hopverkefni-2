@@ -1,5 +1,5 @@
-/*import List from './lib/list';
- */
+//import List from './lib/list';
+ 
 // Global variables to be used by more than 1 function:
 // 1. indicates active buttons, used by more than 1 function
 let activebtns = [0, 0, 0];
@@ -14,12 +14,10 @@ const button = [
 
 //  Index á fyrirlestri
 let fyrirlesturNumer = 0;
-
 document.addEventListener('DOMContentLoaded', () => {
   const page = document.querySelector('body');
   const isLecturePage = page.classList.contains('lecture-page');
   event.preventDefault();
-
   if (isLecturePage) {
     //  Fetchar og lætur búa til fyrirlesturs síðu
     fetch('lectures.json')
@@ -32,9 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => buaTilFyrirlestur(data, fyrirlesturNumer))
       .catch(error => console.error(error));
   } else {
-    // const list = new List();
-    // list.load();
-
     //  Fetchar og lætur búa til index síðu
     fetch('lectures.json')
       .then(result => {
@@ -79,21 +74,9 @@ function buaTilForsidu() {
     card.classList.add('card');
     container.appendChild(card);
   }
-}
-
-// helper function for preparing elements
-function el(name, ...children) {
-  const element = document.createElement(name);
-  for (const child of children) {
-    //for (let i = 0; i < arguments.length; i++) {
-
-    if (typeof child === 'string') {
-      element.appendChild(document.createTextNode(child));
-    } else {
-      element.appendChild(child);
-    }
-  }
-  return element;
+  debugger;
+  hreinsaSidu();
+  testtest(lectures,0);
 }
 
 // selecting if card should appear on the page
@@ -148,62 +131,11 @@ function el(name, ...children) {
 }
 
 
-/*********************************************
- * ****** Maggi ******************************
- * ******************************************/
-
-//  Hérna búum við til fyrirlestur
-function buaTilFyrirlestur(lectures, i) {
-  console.log(lectures[i]);
-  console.log(lectures[i].content.length);
-  document.location.href = 'fyrirlestur.html';
-
-  //  testa
-  let x = el('p');
-  x.innerHTML = 'Hallo heimur';
-  document.getElementById('lecture-page').appendChild(x);
-  ////////////////////////////////////////////
-  document.location.href = 'fyrirlestur.html';
-  debugger;
-  let section = el('section');
-  section.classList.add('fyrirlestur');
-  let fLesturLengd = lectures[i].content.length;
-
-  // Loop'um í gegnum allt contentið
-  for(let j = 0; j < fLesturLengd; j++){
-    let element = el('div');
-    let x = lectures[i].content[j].type;
-    if(x == 'youtube'){
-      element = el('iframe');
-      element.src = lectures[i].content[j].data;
-      element.frameborder = "0";
-      element.allowfullscreen = "0";
-    } else
-    if (x == 'text') {
-      element = el('p');
-      element.innerHTML = lectures[i].content[j].data;
-    } else
-    if (x == 'quote') {
-      let texti = el('p');
-      texti.innerHTML = lectures[i].content[j].data;
-      let hofundur = el('p');
-      hofundur.innerHTML = lectures[i].content[j].attribute;
-      element = el('div', texti,hofundur);
-      element.classList.add('fyrirlestur__quote');
-    }
-    document.getElementById('lecture-page').appendChild(element);
-  }
-  debugger;
-    console.log(document.getElementById('lecture-page'));
-  }
-
-
-
 
 
 function hreinsaSidu() {
   {
-    var e = document.querySelector('.body');
+    var e = document.querySelector('.adal');
 
     //e.firstElementChild can be used.
     var child = e.lastElementChild;
@@ -212,4 +144,47 @@ function hreinsaSidu() {
         child = e.lastElementChild;
     }
 }
+}
+
+function testtest(lecture, i) {
+  console.log(lectures[i]);
+    debugger;
+    //console.log(lectures[i].content.length);
+    let hh = el('p');
+    hh.innerHTML = 'TEST: Hallo heimur';
+    document.getElementById('adal').appendChild(hh);
+    //document.location.href = 'fyrirlestur.html';
+  
+   
+    let section = el('section');
+    section.classList.add('fyrirlestur');
+    let fLesturLengd = lectures[i].content.length;
+  
+    // Loop'um í gegnum allt contentið
+    for(let j = 0; j < fLesturLengd; j++){
+      let element = el('div');
+      let x = lectures[i].content[j].type;
+      if(x == 'youtube'){
+        element = el('iframe');
+        element.src = lectures[i].content[j].data;
+        element.frameborder = "0";
+        element.allowfullscreen = "0";
+      } else
+      if (x == 'text') {
+        element = el('p');
+        element.innerHTML = lectures[i].content[j].data;
+      } else
+      if (x == 'quote') {
+        let texti = el('p');
+        texti.innerHTML = lectures[i].content[j].data;
+        let hofundur = el('p');
+        hofundur.innerHTML = lectures[i].content[j].attribute;
+        element = el('div', texti,hofundur);
+        element.classList.add('fyrirlestur__quote');
+      }
+      document.getElementById('lecture-page').appendChild(element);
+    }
+    debugger;
+      console.log(document.getElementById('lecture-page'));
+    }
 }
