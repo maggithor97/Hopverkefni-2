@@ -1,10 +1,12 @@
-//import List from './lib/list';
- 
+/*import List from './lib/list';
+ */
+debugger;
 // Global variables to be used by more than 1 function:
 // 1. indicates active buttons, used by more than 1 function
 let activebtns = [0, 0, 0];
 // 2. Fetched array of data from Lectures.json
 let lectures;
+
 // 3. array of the buttons
 const button = [
   (htmlbtn = document.getElementById('htmlbtn')),
@@ -14,11 +16,13 @@ const button = [
 
 //  Index á fyrirlestri
 let fyrirlesturNumer = 0;
+
 document.addEventListener('DOMContentLoaded', () => {
   const page = document.querySelector('body');
   const isLecturePage = page.classList.contains('lecture-page');
   event.preventDefault();
-  if (isLecturePage) {
+
+  if (!isLecturePage) {
     //  Fetchar og lætur búa til fyrirlesturs síðu
     fetch('lectures.json')
       .then(result => {
@@ -27,9 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return result.json();
       })
-      .then(data => buaTilFyrirlestur(data, fyrirlesturNumer))
+      .then(data => buaTilFyrirlestur(data.lectures, fyrirlesturNumer))
       .catch(error => console.error(error));
   } else {
+    // const list = new List();
+    // list.load();
+
     //  Fetchar og lætur búa til index síðu
     fetch('lectures.json')
       .then(result => {
@@ -74,9 +81,21 @@ function buaTilForsidu() {
     card.classList.add('card');
     container.appendChild(card);
   }
-  debugger;
-  hreinsaSidu();
-  testtest(lectures,0);
+}
+
+// helper function for preparing elements
+function el(name, ...children) {
+  const element = document.createElement(name);
+  for (const child of children) {
+    //for (let i = 0; i < arguments.length; i++) {
+
+    if (typeof child === 'string') {
+      element.appendChild(document.createTextNode(child));
+    } else {
+      element.appendChild(child);
+    }
+  }
+  return element;
 }
 
 // selecting if card should appear on the page
@@ -131,60 +150,84 @@ function el(name, ...children) {
 }
 
 
+/*********************************************
+ * ****** Maggi ******************************
+ * ******************************************/
+
+//  Hérna búum við til fyrirlestur
+function buaTilFyrirlestur(lectures, i) {
+  
+  ////////////////////////////////////////////
+  debugger;
+  hreinsaSidu();
+//////////////////////////////////////
+  
+  let main = document.getElementsByClassName('fyrirlestur')[0];
+  main.classList.add('fyrirlestur');
+  let fLesturLengd = lectures[i].content.length;
+
+  // Loop'um í gegnum allt contentið
+  for(let j = 0; j < fLesturLengd; j++){
+    let element = el('div');
+    let x = lectures[i].content[j].type;
+    if(x == 'youtube'){
+      element = el('iframe');
+      element.src = lectures[i].content[j].data;
+      element.frameborder = "0";
+      element.allowfullscreen = "0";
+      
+    } else
+    if (x == 'text') {
+      element = el('p');
+      element.innerHTML = lectures[i].content[j].data;
+    } else
+    if (x == 'quote') {
+      let texti = el('p');
+      texti.innerHTML = lectures[i].content[j].data;
+      let hofundur = el('p');
+      hofundur.innerHTML = lectures[i].content[j].attribute;
+      element = el('div', texti,hofundur);
+      element.classList.add('fyrirlestur__quote');
+    } else
+    if (x == 'image') {
+      let mynd = el('img');
+      mynd.src = lectures[i].content[j].data;
+      let txt = el('p');
+      txt.innerHTML = lectures[i].content[j].caption;
+      element = el('div', mynd,txt);
+      element.classList.add('fyrirlestur__mynd');
+    } else 
+    if (x == 'heading') {
+      element = el('h2');
+      element.innerHTML = lectures[i].content[j].data;
+    } else
+    if (x == 'list'){
+      element = el('ul');
+      let lengd = lectures[i].content[j].data.length;
+      for(let k = 0; k < lengd; k++) {
+        let ele = el('li');
+        ele.innerHTML = lectures[i].content[j].data[k];
+        element.appendChild(ele);
+      }
+    } else
+    if (x == 'code'){
+      //Virkar ekki nógu vel
+      debugger;
+      element = el('p');
+      element.classList.add('fyrirlestur__div__code');
+      element.innerHTML = lectures[i].content[j].data;
+    }
+    element.classList.add('fyrirlestur__div');
+    main.appendChild(element);
+  }
+    console.log(document.getElementById('lecture-page'));
+  }
+
+
+
 
 
 function hreinsaSidu() {
-  {
-    var e = document.querySelector('.adal');
-
-    //e.firstElementChild can be used.
-    var child = e.lastElementChild;
-    while (child) {
-        e.removeChild(child);
-        child = e.lastElementChild;
-    }
-}
-}
-
-function testtest(lecture, i) {
-  console.log(lectures[i]);
-    debugger;
-    //console.log(lectures[i].content.length);
-    let hh = el('p');
-    hh.innerHTML = 'TEST: Hallo heimur';
-    document.getElementById('adal').appendChild(hh);
-    //document.location.href = 'fyrirlestur.html';
-  
-   
-    let section = el('section');
-    section.classList.add('fyrirlestur');
-    let fLesturLengd = lectures[i].content.length;
-  
-    // Loop'um í gegnum allt contentið
-    for(let j = 0; j < fLesturLengd; j++){
-      let element = el('div');
-      let x = lectures[i].content[j].type;
-      if(x == 'youtube'){
-        element = el('iframe');
-        element.src = lectures[i].content[j].data;
-        element.frameborder = "0";
-        element.allowfullscreen = "0";
-      } else
-      if (x == 'text') {
-        element = el('p');
-        element.innerHTML = lectures[i].content[j].data;
-      } else
-      if (x == 'quote') {
-        let texti = el('p');
-        texti.innerHTML = lectures[i].content[j].data;
-        let hofundur = el('p');
-        hofundur.innerHTML = lectures[i].content[j].attribute;
-        element = el('div', texti,hofundur);
-        element.classList.add('fyrirlestur__quote');
-      }
-      document.getElementById('lecture-page').appendChild(element);
-    }
-    debugger;
-      console.log(document.getElementById('lecture-page'));
-    }
+    var e = document.getElementById('adal');
+    e.classList.add('clear');
 }
