@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="grid.css">
   <link href="dist\styles.css" rel="stylesheet">
   <title>Fyrirlestur</title>
-  <script src="src\fyrirlestur.js"></script>
 
 </head>
 
@@ -15,8 +14,8 @@
     <h4 class="header__h4"></h4>
     <h1 class="header__h1"></h1>
   </header>
-
-  <section class="fyrirlestur">
+<main class="fyrirlestur">
+  <section id="foo">
     <!-- Texti -->
     <div class="fyrirlestur__div">Hér kemur texti: "Frá örófi alda höfum við sagt hvort öðru sögur. Í fyrstu geymdar í
       minni
@@ -52,11 +51,12 @@
     <!-- Kóði -->
     <p class="fyrirlestur__div fyrirlestur__div__code ">Hér er kóði: "### Markdown fyrirsögn\n\nTexti sem inniheldur
       **feitletraðan** og\n_skáletraðan_ texta\nmeð [tengli](http://example.org).\n\n* Listi\n* af\n* orðum"
-    </p>
+    </p>  
   </section>
+</main>
   <p class="takkar klara__fyrirlestur">Klára Fyrirlestur</p>
   <p class="takkar til__baka">Til baka</p>
-
+<script type="module" src="src\fyrirlestur.mjs"></script>
 </body>
 
 </html>

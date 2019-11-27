@@ -1,20 +1,19 @@
 /*import List from './lib/list';
  */
-//import {buaTilFyrirlestur} from './fyrirlestur.mjs'
 // Global variables to be used by more than 1 function:
 // 1. indicates active buttons, used by more than 1 function
-debugger;
 let activebtns = [0, 0, 0];
 // 2. Fetched array of data from Lectures.json
-let lectures;
+export let lectures;
+
 // 3. array of the buttons
-let htmlbtn, cssbtn, jsbtn;
-let button = [
+let htmlbtn, cssbtn, jsbtn, hyperlink;
+const button = [
   (htmlbtn = document.getElementById('htmlbtn')),
   (cssbtn = document.getElementById('cssbtn')),
-  (jsbtn = document.getElementById('jsbtn'))
+  (jsbtn = document.getElementById('jsbtn')),
+  (hyperlink = document.querySelector('h4'))
 ];
-console.log(button);
 
 //  Index á fyrirlestri
 let fyrirlesturNumer = 0;
@@ -24,11 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const isLecturePage = page.classList.contains('lecture-page');
   event.preventDefault();
 
- if (isLecturePage) {
-    console.log('line 28 in index.mjs');
-    buaTilFyrirlestur(5);
-return;
-    // if (isLecturePage) {
+  if (isLecturePage) {
     //  Fetchar og lætur búa til fyrirlesturs síðu
     fetch('lectures.json')
       .then(result => {
@@ -37,9 +32,10 @@ return;
         }
         return result.json();
       })
-      .then(data => buaTilFyrirlestur(data, fyrirlesturNumer))
+      .then(data => buaTilFyrirlestur(data.lectures, fyrirlesturNumer))
       .catch(error => console.error(error));
   } else {
+    addListenerBtn();
     // const list = new List();
     // list.load();
 
@@ -53,12 +49,13 @@ return;
       })
       .then(data => getdata(data.lectures))
       .catch(error => console.error(error));
-    addListenerBtn();
   }
 });
 
 function getdata(dataArray) {
-  lectures = dataArray;
+ lectures = dataArray;
+console.log('getdata lectures: ' + lectures);
+console.log('getdata data: ' + dataArray);
   buaTilForsidu();
 }
 
@@ -94,8 +91,6 @@ function buaTilForsidu() {
 function el(name, ...children) {
   const element = document.createElement(name);
   for (const child of children) {
-    //for (let i = 0; i < arguments.length; i++) {
-
     if (typeof child === 'string') {
       element.appendChild(document.createTextNode(child));
     } else {
@@ -119,7 +114,7 @@ function isrelevant(i) {
 
 // add event listeners for the buttons
 function addListenerBtn() {
-  for (let i = 0; i < 3; i++)
+  for (let i = 0; i < 4; i++)///////////////////////////////////////////////////
     button[i].addEventListener(
       'click',
       function() {
@@ -127,9 +122,13 @@ function addListenerBtn() {
       },
       false
     );
+    console.log(button);
 }
 // set button active color on/off
 function clickHandler(btntype) {
+    if (btntype===3) {
+  console.log("Ja");
+ buaTilFyrirlestur(5);}
   activebtns[btntype] = activebtns[btntype] === 1 ? 0 : 1;
   for (let i = 0; i < 3; i++) {
     if (activebtns[i] === 1) {
@@ -141,17 +140,19 @@ function clickHandler(btntype) {
     }
   }
   buaTilForsidu();
-}
 
+}
 /*********************************************
  * ****** Maggi ******************************
  * ******************************************/
 
 //export
  const p = 5;
-export { p, lectures };
+//export { p};
 //export {el};
 console.log("index p: "+p);
+console.log("index lectures: "+lectures);
+import { buaTilFyrirlestur } from './fyrirlestur.mjs';
 //import { bar } from './src/lib/helpers';
 //console.log(bar);
 

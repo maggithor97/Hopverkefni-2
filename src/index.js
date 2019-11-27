@@ -1,6 +1,5 @@
 /*import List from './lib/list';
  */
-debugger;
 // Global variables to be used by more than 1 function:
 // 1. indicates active buttons, used by more than 1 function
 let activebtns = [0, 0, 0];
@@ -22,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const isLecturePage = page.classList.contains('lecture-page');
   event.preventDefault();
 
-  if (!isLecturePage) {
+  if (isLecturePage) {
     //  Fetchar og lætur búa til fyrirlesturs síðu
     fetch('lectures.json')
       .then(result => {
@@ -34,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => buaTilFyrirlestur(data.lectures, fyrirlesturNumer))
       .catch(error => console.error(error));
   } else {
+    addListenerBtn();
     // const list = new List();
     // list.load();
 
@@ -87,8 +87,6 @@ function buaTilForsidu() {
 function el(name, ...children) {
   const element = document.createElement(name);
   for (const child of children) {
-    //for (let i = 0; i < arguments.length; i++) {
-
     if (typeof child === 'string') {
       element.appendChild(document.createTextNode(child));
     } else {
@@ -109,18 +107,18 @@ function isrelevant(i) {
         else return 0;
   } else return 1;
 }
-/*
+
 // add event listeners for the buttons
-for (let i = 0; i < 3; i++)
-  button[i].addEventListener(
-    'click',
-    function() {
-      clickHandler(i);
-    },
-    false
-  );
-console.log(button);
-*/
+function addListenerBtn() {
+  for (let i = 0; i < 3; i++)
+    button[i].addEventListener(
+      'click',
+      function() {
+        clickHandler(i);
+      },
+      false
+    );
+}
 // set button active color on/off
 function clickHandler(btntype) {
   activebtns[btntype] = activebtns[btntype] === 1 ? 0 : 1;
@@ -136,19 +134,6 @@ function clickHandler(btntype) {
   buaTilForsidu();
 }
 
-//  Hjálparfall
-function el(name, ...children) {
-  const element = document.createElement(name);
-  for (const child of children) {
-    if (typeof child === 'string') {
-      element.appendChild(document.createTextNode(child));
-    } else {
-      element.appendChild(child);
-    }
-  }
-  return element;
-}
-
 
 /*********************************************
  * ****** Maggi ******************************
@@ -158,7 +143,6 @@ function el(name, ...children) {
 function buaTilFyrirlestur(lectures, i) {
   
   ////////////////////////////////////////////
-  debugger;
   hreinsaSidu();
 //////////////////////////////////////
   
@@ -212,7 +196,6 @@ function buaTilFyrirlestur(lectures, i) {
     } else
     if (x == 'code'){
       //Virkar ekki nógu vel
-      debugger;
       element = el('p');
       element.classList.add('fyrirlestur__div__code');
       element.innerHTML = lectures[i].content[j].data;
