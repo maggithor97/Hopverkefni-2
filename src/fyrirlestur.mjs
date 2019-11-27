@@ -1,9 +1,13 @@
-//  Hérna búum við til fyrirlestur
 
+debugger;
 import { p } from './index.mjs';
-console.log(p);
+//debugger;
 
-function buaTilFyrirlestur(lectures, i) {
+//const {p} = object
+
+console.log("fyrirlestur.mjs\n value from index: "+p);
+//  Hérna búum við til fyrirlestur
+function buaTilFyrirlestur(i) {
   console.log(lectures[i]);
   console.log(lectures[i].content.length);
   document.location.href = 'fyrirlestur.html';
@@ -41,7 +45,7 @@ function buaTilFyrirlestur(lectures, i) {
     }
     document.getElementById('lecture-page').appendChild(element);
   }
-  debugger;
+ 
   console.log(document.getElementById('lecture-page'));
 }
 
