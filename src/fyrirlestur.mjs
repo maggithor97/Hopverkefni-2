@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const isLecturePage = page.classList.contains('lecture-page');
   event.preventDefault();
 
-  if (isLecturePage) {
+  if (!isLecturePage) {
     //  Fetchar og lætur búa til fyrirlesturs síðu
     fetch('lectures.json')
       .then(result => {
@@ -19,9 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => buaTilFyrirlestur(data.lectures, 5))
       .catch(error => console.error(error));
   } else {
+
     addListenerBtn();
-    // const list = new List();
-    // list.load();
 
     //  Fetchar og lætur búa til index síðu
     fetch('lectures.json')
