@@ -1,29 +1,38 @@
 /*import List from './lib/list';
  */
+
 // Global variables to be used by more than 1 function:
 // 1. indicates active buttons, used by more than 1 function
+
 let activebtns = [0, 0, 0];
 // 2. Fetched array of data from Lectures.json
-export let lectures;
-
+let lectures;
 // 3. array of the buttons
-let htmlbtn, cssbtn, jsbtn, hyperlink;
-const button = [
+let htmlbtn, cssbtn, jsbtn, hreflink;
+let button = [
   (htmlbtn = document.getElementById('htmlbtn')),
   (cssbtn = document.getElementById('cssbtn')),
   (jsbtn = document.getElementById('jsbtn')),
-  (hyperlink = document.querySelector('h4'))
+  (hreflink = document.getElementById('foo'))
 ];
+console.log(button);
 
 //  Index á fyrirlestri
 let fyrirlesturNumer = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
+  load();
+});
+function load() {
   const page = document.querySelector('body');
   const isLecturePage = page.classList.contains('lecture-page');
   event.preventDefault();
 
   if (isLecturePage) {
+    console.log('it is lecture page');
+    buaTilFyrirlestur(5);
+    return;
+    // if (isLecturePage) {
     //  Fetchar og lætur búa til fyrirlesturs síðu
     fetch('lectures.json')
       .then(result => {
@@ -32,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return result.json();
       })
-      .then(data => buaTilFyrirlestur(data.lectures, fyrirlesturNumer))
+      .then(data => buaTilFyrirlestur(data, fyrirlesturNumer))
       .catch(error => console.error(error));
   } else {
 
@@ -46,15 +55,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return result.json();
       })
-      .then(data => getdata(data.lectures))
+      .then(data => getdata(data))
       .catch(error => console.error(error));
+    addListenerBtn();
   }
-});
+}
 
 function getdata(dataArray) {
- lectures = dataArray;
-console.log('getdata lectures: ' + lectures);
-console.log('getdata data: ' + dataArray);
+  lectures = dataArray.lectures;
+  localStorage.setItem('dataLectures', JSON.stringify(dataArray));
+  //console.log("1\n"+JSON.stringify(localStorage.getItem('dataLectures')));
+  console.log('2\n' + dataArray);
+  // console.log('3\n' + localStorage.getItem('dataLectures'));
   buaTilForsidu();
 }
 
@@ -64,6 +76,8 @@ function buaTilForsidu() {
   const container = document.querySelector('.container');
   container.innerHTML = ''; // Clearing the html from previous call
   for (let i = 0; i < lectures.length; flag = 0, i++) {
+    console.log(lectures[i]);
+    console.log(lectures[i].content.length);
     flag = isrelevant(i);
 
     if (!flag) continue;
@@ -83,6 +97,17 @@ function buaTilForsidu() {
     card = el('div', image, box);
     card.classList.add('card');
     container.appendChild(card);
+    card.addEventListener(
+      'click',
+      function() {
+        console.log('listener card\n\n' + i + '\n\n');
+        localStorage.setItem('rrr', i);
+          location.href = 'fyrirlestur.html';
+
+        //        buaTilFyrirlestur(lectures, i);
+      },
+      false
+    );
   }
 }
 
@@ -90,6 +115,8 @@ function buaTilForsidu() {
 function el(name, ...children) {
   const element = document.createElement(name);
   for (const child of children) {
+    //for (let i = 0; i < arguments.length; i++) {
+
     if (typeof child === 'string') {
       element.appendChild(document.createTextNode(child));
     } else {
@@ -113,7 +140,8 @@ function isrelevant(i) {
 
 // add event listeners for the buttons
 function addListenerBtn() {
-  for (let i = 0; i < 4; i++)///////////////////////////////////////////////////
+  /////////////////////////////////////////////
+  for (let i = 0; i < 4; i++)
     button[i].addEventListener(
       'click',
       function() {
@@ -121,13 +149,9 @@ function addListenerBtn() {
       },
       false
     );
-    console.log(button);
 }
 // set button active color on/off
 function clickHandler(btntype) {
-    if (btntype===3) {
-  console.log("Ja");
- buaTilFyrirlestur(5);}
   activebtns[btntype] = activebtns[btntype] === 1 ? 0 : 1;
   for (let i = 0; i < 3; i++) {
     if (activebtns[i] === 1) {
@@ -139,20 +163,21 @@ function clickHandler(btntype) {
     }
   }
   buaTilForsidu();
-
+  if (btntype === 3) p = 8;
 }
+
 /*********************************************
  * ****** Maggi ******************************
  * ******************************************/
-
-//export
- const p = 5;
-//export { p};
+let rrr = 1;
+//export var p;
+//export default { p, lectures }
+//export function modifyX( value ) { p = value; }
 //export {el};
-console.log("index p: "+p);
-console.log("index lectures: "+lectures);
-import { buaTilFyrirlestur } from './fyrirlestur.mjs';
+//console.log("index p: "+p);
 //import { bar } from './src/lib/helpers';
 //console.log(bar);
-
-/////////////////////////////////////////////////////////
+window.onload = function() {
+  var getInput = rrr;
+  localStorage.setItem('rrr', getInput);
+};
