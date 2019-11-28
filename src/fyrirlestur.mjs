@@ -179,8 +179,8 @@ function buaTilTakkaNedst(i) {
     buinn[fyrirlesturNumer] = buinn[fyrirlesturNumer] ? 0 : 1;
  console.log(buinn);
     localStorage.setItem('foo',JSON.stringify(buinn));
-   
-  
+
+
     //console.log('\n\n\n\n\n\n');
     //console.log(klaradirFyrirlestrar);
     //  *Merkja fyrirlesturinn sem kláraðann

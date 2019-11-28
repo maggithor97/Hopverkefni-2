@@ -43,8 +43,8 @@ function load() {
       .then(data => buaTilFyrirlestur(data, fyrirlesturNumer))
       .catch(error => console.error(error));
   } else {
-    // const list = new List();
-    // list.load();
+
+    addListenerBtn();
 
     //  Fetchar og lætur búa til index síðu
     fetch('lectures.json')
