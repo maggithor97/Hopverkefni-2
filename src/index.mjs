@@ -1,9 +1,7 @@
-/*import List from './lib/list';
- */
-
+//import { klaradirFyrirlestrar  as old} from './fyrirlestur.mjs';
+//console.log(old);
 // Global variables to be used by more than 1 function:
 // 1. indicates active buttons, used by more than 1 function
-
 let activebtns = [0, 0, 0];
 // 2. Fetched array of data from Lectures.json
 let lectures;
@@ -15,13 +13,14 @@ let button = [
   (jsbtn = document.getElementById('jsbtn')),
   (hreflink = document.getElementById('foo'))
 ];
-console.log(button);
+//console.log(button);
 
 //  Index á fyrirlestri
 let fyrirlesturNumer = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
-  load();
+ // load();
+ // setfylki(); ////////////
 });
 function load() {
   const page = document.querySelector('body');
@@ -29,7 +28,7 @@ function load() {
   event.preventDefault();
 
   if (isLecturePage) {
-    console.log('it is lecture page');
+    //console.log('it is lecture page');
     buaTilFyrirlestur(5);
     return;
     // if (isLecturePage) {
@@ -64,9 +63,9 @@ function load() {
 function getdata(dataArray) {
   lectures = dataArray.lectures;
   localStorage.setItem('dataLectures', JSON.stringify(dataArray));
-  //console.log("1\n"+JSON.stringify(localStorage.getItem('dataLectures')));
-  console.log('2\n' + dataArray);
-  // console.log('3\n' + localStorage.getItem('dataLectures'));
+  ////console.log("1\n"+JSON.stringify(localStorage.getItem('dataLectures')));
+  //console.log('2\n' + dataArray);
+  // //console.log('3\n' + localStorage.getItem('dataLectures'));
   buaTilForsidu();
 }
 
@@ -76,8 +75,8 @@ function buaTilForsidu() {
   const container = document.querySelector('.container');
   container.innerHTML = ''; // Clearing the html from previous call
   for (let i = 0; i < lectures.length; flag = 0, i++) {
-    console.log(lectures[i]);
-    console.log(lectures[i].content.length);
+    //console.log(lectures[i]);
+    //console.log(lectures[i].content.length);
     flag = isrelevant(i);
 
     if (!flag) continue;
@@ -100,9 +99,9 @@ function buaTilForsidu() {
     card.addEventListener(
       'click',
       function() {
-        console.log('listener card\n\n' + i + '\n\n');
+        //console.log('listener card\n\n' + i + '\n\n');
         localStorage.setItem('rrr', i);
-          location.href = 'fyrirlestur.html';
+        location.href = 'fyrirlestur.html';
 
         //        buaTilFyrirlestur(lectures, i);
       },
@@ -166,18 +165,24 @@ function clickHandler(btntype) {
   if (btntype === 3) p = 8;
 }
 
-/*********************************************
- * ****** Maggi ******************************
- * ******************************************/
 let rrr = 1;
-//export var p;
-//export default { p, lectures }
-//export function modifyX( value ) { p = value; }
-//export {el};
-//console.log("index p: "+p);
-//import { bar } from './src/lib/helpers';
-//console.log(bar);
 window.onload = function() {
   var getInput = rrr;
   localStorage.setItem('rrr', getInput);
 };
+
+function setfylki() {
+  let bar,
+    fylki = [];
+  bar = JSON.parse(localStorage.getItem('foo'));
+  if (!window.localStorage.foo) {
+    console.log("blablabla");
+    for (let j = 0; j < 13; j++) {
+      debugger;
+      fylki[j] = 0;
+  console.log(fylki);
+  localStorage.setItem('foo', JSON.stringify(fylki));
+    }
+  }
+  console.log(bar);
+}

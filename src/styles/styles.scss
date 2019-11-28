@@ -84,6 +84,7 @@ main {
   box-shadow: 0.1rem 0.1rem $grey2;
   padding: 0.6em 1.2em 0.6em 1.2em;
   border-radius: 5px;
+    background-image: url("../../img/html-boxes.svg");
 }
 
 .btn:hover {
@@ -94,6 +95,7 @@ main {
 .btn:active,
 .btn__active,
 .btn__active:hover {
+  
   background-color: $green;
   box-shadow: 0.1rem 0.1rem $green2;
 }
@@ -149,6 +151,16 @@ main {
 .index__card__bottom {
   margin-top: auto;
   padding-left: 1rem;
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+}
+.checked {
+  margin-left: auto;
+  color: $green;
+  float: right;
+  font-size: 2.5rem;;
+  margin-left: auto;
 }
 
 .index__card__bottom h1 {
@@ -183,3 +195,5 @@ main {
 }
 
 }
+
+
