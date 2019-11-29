@@ -113,26 +113,14 @@ main {
     margin-right: $gutter;
     margin-left: $gutter;
   }
+  
 }
 @media (min-width: 1240px) {
   .container {
     margin: 0 calc(50% - 600px);
   }
 }
-.card,  // Ekki búínn card
-.card2 { // Búínn card
-  cursor: pointer;
-  height: 300px;
-  margin-top: $gutter;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-content: space-between;
-  background: $grey3;
-  width: 100%;
-  max-height: 66vw;
-    position:relative;
-}
+
 
 .index__image {
   position: relative;
@@ -158,15 +146,16 @@ main {
   margin-bottom: -10%;
 }
 
-.text__left {position:absolute;
-    bottom:0.4rem;
-    left:0.5rem;
+.text__left {
+  position: absolute;
+    bottom: 0.4rem;
+    left: 0.5rem;
 }
 
 .checked {
-    position:absolute;
-    bottom:0.4rem;
-    right:0.2rem;
+    position: absolute;
+    bottom: 0.4rem;
+    right: 0.2rem;
   color: $green;
   font-size: 2.5rem;
 }
@@ -177,12 +166,28 @@ main {
   font-size: 2rem;
 }
 
-
+.card,  // Ekki búínn card
+.card2 { // Búínn card
+  cursor: pointer;
+  font-size: 5vw;
+  height: $page / 3;
+  margin-top: $gutter;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: space-between;
+  background: $grey3;
+  width: 100%;
+  max-height: 70vw;
+    position:relative;
+}
 @media (min-width: 501px) {
   .card,
   .card2 {
     width: 48.5%;
-    max-height: 48vw;
+    height:  36vw;
+     max-height: $page/4;
+  font-size: initial;
   }
 }
 
@@ -190,7 +195,9 @@ main {
   .card,
    .card2 {
     width: 32.1%;
-    max-height: 26vw;
+   // max-height: calc(1200px / 4);
+    height:  26vw;
+     max-height: $page/4;
   }
   .header__h1 {
     font-size: 2em;

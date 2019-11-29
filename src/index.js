@@ -11,7 +11,8 @@ let lectures;
 const button = [
   document.getElementById('htmlbtn'),
   document.getElementById('cssbtn'),
-  document.getElementById('jsbtn')];
+  document.getElementById('jsbtn')
+];
 
 //   Hérna búum við til forsíðuna
 function buaTilForsidu() {
@@ -73,7 +74,6 @@ function buaTilForsidu() {
 function el(name, ...children) {
   const element = document.createElement(name);
   for (const child of children) {
-
     if (typeof child === 'string') {
       element.appendChild(document.createTextNode(child));
     } else {
@@ -88,22 +88,26 @@ function isrelevant(i) {
   const category = ['html', 'css', 'javascript'];
   const totalActiveBtns = activebtns.reduce((a, b) => a + b);
   if (totalActiveBtns === 1 || totalActiveBtns === 2) {
-    for (let j = 0; j < activebtns.length; j++) {if (lectures[i].category === category[j])
-      if (activebtns[j]) return 1;
-      else return 0;
-      } ////////////////////
-  } return 1;
+    for (let j = 0; j < activebtns.length; j++) {
+      if (lectures[i].category === category[j])
+        if (activebtns[j]) return 1;
+        else return 0;
+    } ////////////////////
+  }
+  return 1;
 }
 
 //  add event listeners for the buttons
 function addListenerBtn() {
-  for (let i = 0; i < button.length; i++) {button[i].addEventListener(
+  for (let i = 0; i < button.length; i++) {
+    button[i].addEventListener(
       'click',
       () => {
         clickHandler(i);
       },
       false
-    );}
+    );
+  }
 }
 //  set button active color on/off
 function clickHandler(btntype) {
@@ -129,7 +133,6 @@ function setfylki(len) {
   }
 }
 
-
 function getdata(dataArray) {
   lectures = dataArray.lectures;
   const lecturesLen = dataArray.lectures.length;
@@ -138,20 +141,19 @@ function getdata(dataArray) {
   buaTilForsidu();
 }
 
-
 function load() {
   addListenerBtn();
 
   //   Fetchar og lætur búa til index síðu
   fetch('lectures.json')
-    .then((result) => {
+    .then(result => {
       if (!result.ok) {
         throw new Error('Non 200 status');
       }
       return result.json();
     })
-    .then((data) => getdata(data))
-    .catch((error) => console.error(error));
+    .then(data => getdata(data))
+    .catch(error => console.error(error));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
