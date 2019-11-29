@@ -110,7 +110,7 @@ function buaTilTakkaNedst(i) {
     klaraFyrirlestur.innerHTML = 'Klára fyrirlestur';
   }
   klaraFyrirlestur.classList.add('takki', 'klara__fyrirlestur');
-  klaraFyrirlestur.style.cursor = 'pointer';
+  klaraFyrirlestur.style.cursor = 'default';
 
   tilBaka.innerHTML = 'Til baka';
   tilBaka.classList.add('takki', 'til__baka');
