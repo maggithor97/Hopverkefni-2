@@ -1,26 +1,25 @@
-//import { klaradirFyrirlestrar  as old} from './fyrirlestur.mjs';
-//console.log(old);
-// Global variables to be used by more than 1 function:
-// 1. indicates active buttons, used by more than 1 function
+
+//  Global variables to be used by more than 1 function:
+//  1. indicates active buttons, used by more than 1 function
 let activebtns = [0, 0, 0];
-// 2. Fetched array of data from Lectures.json
+//  2. Fetched array of data from Lectures.json
 let lectures;
-// 3. array of the buttons
+//  3. array of the buttons
 let htmlbtn, cssbtn, jsbtn, hreflink;
 let button = [
   (htmlbtn = document.getElementById('htmlbtn')),
   (cssbtn = document.getElementById('cssbtn')),
   (jsbtn = document.getElementById('jsbtn'))
 ];
-//console.log(button);
+//  console.log(button);
 
-//  Index á fyrirlestri
+//   Index á fyrirlestri
 let fyrirlesturNumer = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
   load();
   console.log("bar");
- // setfylki(); // Blanda saman English and Íslensku
+ //  setfylki(); //  Blanda saman English and Íslensku
 });
 
 function load() {
@@ -29,7 +28,7 @@ function load() {
   event.preventDefault();
     addListenerBtn();
 
-    //  Fetchar og lætur búa til index síðu
+    //   Fetchar og lætur búa til index síðu
     fetch('lectures.json')
       .then(result => {
         if (!result.ok) {
@@ -48,14 +47,14 @@ function getdata(dataArray) {
   buaTilForsidu();
 }
 
-//  Hérna búum við til forsíðuna
+//   Hérna búum við til forsíðuna
 function buaTilForsidu() {
   let card, image, img, box, box2,box3, h4, h1, checked, flag;
   const container = document.querySelector('.container');
   let fylki = JSON.parse(localStorage.getItem('lecDone'));
-  container.innerHTML = ''; // Clearing the html from previous call
+  container.innerHTML = ''; //  Clearing the html from previous call
   for (let i = 0; i < lectures.length; flag = 0, i++) {
-    flag = isrelevant(i); // Marks relevance of card
+    flag = isrelevant(i); //  Marks relevance of card
 
     if (!flag) continue;
     img = el('img');
@@ -85,7 +84,7 @@ function buaTilForsidu() {
     card.addEventListener(
       'click',
       function() {
-        //console.log('listener card\n\n' + i + '\n\n');
+        // console.log('listener card\n\n' + i + '\n\n');
         localStorage.setItem('lecNo', i);
         console.log(i);
 console.log(localStorage.getItem('lecNo'));
@@ -96,11 +95,11 @@ console.log(localStorage.getItem('lecNo'));
   }
 }
 
-// helper function for preparing elements
+//  helper function for preparing elements
 function el(name, ...children) {
   const element = document.createElement(name);
   for (const child of children) {
-    //for (let i = 0; i < arguments.length; i++) {
+    // for (let i = 0; i < arguments.length; i++) {
 
     if (typeof child === 'string') {
       element.appendChild(document.createTextNode(child));
@@ -111,7 +110,7 @@ function el(name, ...children) {
   return element;
 }
 
-// selecting if card should appear on the page
+//  selecting if card should appear on the page
 function isrelevant(i) {
   const category = ['html', 'css', 'javascript'];
   var totalActiveBtns = activebtns.reduce((a, b) => a + b);
@@ -123,7 +122,7 @@ function isrelevant(i) {
   } else return 1;
 }
 
-// add event listeners for the buttons
+//  add event listeners for the buttons
 function addListenerBtn() {
   for (let i = 0; i < button.length; i++)
     button[i].addEventListener(
@@ -134,7 +133,7 @@ function addListenerBtn() {
       false
     );
 }
-// set button active color on/off
+//  set button active color on/off
 function clickHandler(btntype) {
   activebtns[btntype] = activebtns[btntype] === 1 ? 0 : 1;
   for (let i = 0; i < activebtns.length; i++) {

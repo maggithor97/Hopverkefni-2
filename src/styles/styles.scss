@@ -119,6 +119,7 @@ main {
 }
 .card,  // Ekki búínn card
 .card2 { // Búínn card
+  cursor: pointer;
   height: 300px;
   margin-top: $gutter;
   display: flex;

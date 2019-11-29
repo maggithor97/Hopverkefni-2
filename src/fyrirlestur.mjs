@@ -136,6 +136,7 @@ function buaTilTakkaNedst(i) {
 
   tilBaka.innerHTML = 'Til baka';
   tilBaka.classList.add('takki', 'til__baka');
+  tilBakastyle.cursor = 'pointer';
   let takkar = el('div', klaraFyrirlestur, tilBaka);
   takkar.classList.add('takkar');
   main.appendChild(takkar);
