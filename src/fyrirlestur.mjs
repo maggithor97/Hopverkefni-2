@@ -10,9 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       return result.json();
     })
-    .then((data => getdata(data.lectures, fyrirlesturNumer))
-      .catch((error) => console.error(error))
-  }); //  eslint-disable-line
+    .then((data) => getdata(data.lectures, fyrirlesturNumer))
+    .catch((error) => console.error(error))}); //  eslint-disable-line
 
 function getdata(dataArray, fyrirlesturNumer) {
   console.log(dataArray);
@@ -36,23 +35,23 @@ function el(name, ...children) {
 }
 
 //  Hérna búum við til fyrirlestur
-function buaTilFyrirlestur(lectures, i) {
-  let main = document.getElementsByClassName('fyrirlestur')[0];
-  let fLesturLengd = lectures.content.length;
+function buaTilFyrirlestur(lectures) {
+  const main = document.getElementsByClassName('fyrirlestur')[0];
+  const fLesturLengd = lectures.content.length;
 
   // Loop'um í gegnum allt contentið
   for (let j = 0; j < fLesturLengd; j++) {
     let element = el('div');
-    let x = lectures.content[j].type;
-    if (x == 'youtube') {
-      let myndband = el('iframe');
+    const x = lectures.content[j].type;
+    if (x === 'youtube') {
+      const myndband = el('iframe');
       myndband.src = lectures.content[j].data;
       myndband.frameborder = '0';
       myndband.allowfullscreen = '0';
       myndband.classList.add('fyrirlestur__div__myndband');
       element = el('div', myndband);
       element.classList.add('fyrirlestur__div__myndband__container');
-    } else if (x == 'text') {
+    } else if (x === 'text') {
       element = el('p');
       var t = document.createTextNode(lectures.content[j].data);
       element.appendChild(t);
@@ -115,7 +114,7 @@ function fyrirlesturHeader(lectures) {
 function buaTilTakkaNedst(i) {
   //  Búa til takkana
   let buinn = JSON.parse(localStorage.getItem('lecDone'));
-  let main = document.getElementsByClassName('fyrirlestur')[0];
+  let  main = document.getElementsByClassName('fyrirlestur')[0];
   let klaraFyrirlestur = el('p');
   let tilBaka = el('p');
   if (buinn[i]) {
@@ -129,7 +128,7 @@ function buaTilTakkaNedst(i) {
 
   tilBaka.innerHTML = 'Til baka';
   tilBaka.classList.add('takki', 'til__baka');
-  tilBakastyle.cursor = 'pointer';
+  tilBaka.style.cursor = 'pointer';
   let takkar = el('div', klaraFyrirlestur, tilBaka);
   takkar.classList.add('takkar');
   main.appendChild(takkar);
