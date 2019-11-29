@@ -1,25 +1,18 @@
-function myInitCode() {}
+/* eslint-disable linebreak-style */
 
-document.addEventListener('DOMContentLoaded', load());
-
-function load() {
-  const page = document.querySelector('body');
-  const isLecturePage = page.classList.contains('lecture-page');
-  let fyrirlesturNumer;
-  // event.preventDefault();
-  fyrirlesturNumer = localStorage.getItem('lecNo');
-  //console.log('Load Func\n\n' + fyrirlesturNumer);
+document.addEventListener('DOMContentLoaded', () => {
+  let fyrirlesturNumer = localStorage.getItem('lecNo'); // eslint-disable-line
 
   fetch('lectures.json')
-    .then(result => {
+    .then((result) => {
       if (!result.ok) {
         throw new Error('Non 200 status');
       }
       return result.json();
     })
-    .then(data => getdata(data.lectures, fyrirlesturNumer))
-    .catch(error => console.error(error));
-}
+    .then((data => getdata(data.lectures, fyrirlesturNumer))
+      .catch((error) => console.error(error))
+  }); //  eslint-disable-line
 
 function getdata(dataArray, fyrirlesturNumer) {
   console.log(dataArray);
@@ -144,7 +137,7 @@ function buaTilTakkaNedst(i) {
   klaraFyrirlestur.addEventListener('click', () => checked(klaraFyrirlestur));
   tilBaka.addEventListener(
     'click',
-    function() {
+    function () {
       //console.log('listener tilbaka\n\n');
       location.href = 'index.html';
     },
@@ -153,13 +146,12 @@ function buaTilTakkaNedst(i) {
 }
 
 function checked(klaraFyrirlestur) {
-    klaraFyrirlestur.innerHTML = '✓ Fyrirlestur kláraður';
-    klaraFyrirlestur.style.color = '#2d2';
-    let fyrirlesturNumer = localStorage.getItem('lecNo');
-    let buinn = JSON.parse(localStorage.getItem('lecDone'));
-    console.log(buinn);
-    buinn[fyrirlesturNumer] = buinn[fyrirlesturNumer] ? 0 : 1;
-    console.log(buinn);
-    localStorage.setItem('lecDone', JSON.stringify(buinn));
-  }
-
+  klaraFyrirlestur.innerHTML = '✓ Fyrirlestur kláraður';
+  klaraFyrirlestur.style.color = '#2d2';
+  let fyrirlesturNumer = localStorage.getItem('lecNo');
+  let buinn = JSON.parse(localStorage.getItem('lecDone'));
+  console.log(buinn);
+  buinn[fyrirlesturNumer] = buinn[fyrirlesturNumer] ? 0 : 1;
+  console.log(buinn);
+  localStorage.setItem('lecDone', JSON.stringify(buinn));
+}

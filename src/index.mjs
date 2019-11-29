@@ -1,6 +1,7 @@
+/* eslint-disable linebreak-style */
 
-//  Global variables to be used by more than 1 function:
-//  1. indicates active buttons, used by more than 1 function
+// Global variables to be used by more than 1 function:
+// 1. indicates active buttons, used by more than 1 function
 let activebtns = [0, 0, 0];
 //  2. Fetched array of data from Lectures.json
 let lectures;
@@ -49,7 +50,7 @@ function getdata(dataArray) {
 
 //   Hérna búum við til forsíðuna
 function buaTilForsidu() {
-  let card, image, img, box, box2,box3, h4, h1, checked, flag;
+  let card, image, img, box, box2, box3, h4, h1, checked, flag;
   const container = document.querySelector('.container');
   let fylki = JSON.parse(localStorage.getItem('lecDone'));
   container.innerHTML = ''; //  Clearing the html from previous call
@@ -71,7 +72,7 @@ function buaTilForsidu() {
     box.classList.add('text__left');
 
     checked = el('p', '✓');
-    box2 = el('div',checked);
+    box2 = el('div', checked);
     flag = fylki[i] ? 'checked' : 'unchecked';
     box2.classList.add(flag);
 
@@ -87,8 +88,8 @@ function buaTilForsidu() {
         // console.log('listener card\n\n' + i + '\n\n');
         localStorage.setItem('lecNo', i);
         console.log(i);
-console.log(localStorage.getItem('lecNo'));
-       location.href = 'fyrirlestur.html';
+        console.log(localStorage.getItem('lecNo'));
+        location.href = 'fyrirlestur.html';
       },
       false
     );
@@ -127,7 +128,7 @@ function addListenerBtn() {
   for (let i = 0; i < button.length; i++)
     button[i].addEventListener(
       'click',
-      function() {
+      function () {
         clickHandler(i);
       },
       false
@@ -148,12 +149,6 @@ function clickHandler(btntype) {
   buaTilForsidu();
 }
 
-/*let rrr = 1;
-window.onload = function() {
-  var getInput = rrr;
-  localStorage.setItem('lecNo', getInput);
-};*/
-
 function setfylki(len) {
   let existcheck,
     fylki = [];
@@ -161,8 +156,8 @@ function setfylki(len) {
   if (!window.localStorage.lecDone) {
     for (let j = 0; j < len; j++) {
       fylki[j] = 0;
-  console.log(fylki);
-  localStorage.setItem('lecDone', JSON.stringify(fylki));
+      console.log(fylki);
+      localStorage.setItem('lecDone', JSON.stringify(fylki));
     }
   }
   console.log(existcheck);
