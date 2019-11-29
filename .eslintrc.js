@@ -12,6 +12,17 @@ module.exports = {
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
-    "rules": {
-    }
+    rules: {
+        'no-use-before-define': 'off',
+        'prettier/prettier': 'on',
+        'global-require': 'warn',
+        'no-undef': 'off',
+        'prefer-template': 'off',
+        'no-console': 'warn',
+        'no-plusplus': 'warn',
+        'linebreak-style': 'off',
+        'no-resticted-globals': 'off',
+        'no-param-reassign': 'off',
+        'no-plusplus': 'off'
+      }
 };
