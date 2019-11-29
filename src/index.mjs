@@ -73,7 +73,6 @@ function buaTilForsidu() {
 function el(name, ...children) {
   const element = document.createElement(name);
   for (const child of children) {
-    // for (let i = 0; i < arguments.length; i++) {
 
     if (typeof child === 'string') {
       element.appendChild(document.createTextNode(child));
@@ -90,8 +89,9 @@ function isrelevant(i) {
   const totalActiveBtns = activebtns.reduce((a, b) => a + b);
   if (totalActiveBtns === 1 || totalActiveBtns === 2) {
     for (let j = 0; j < activebtns.length; j++) {if (lectures[i].category === category[j])
-        if (activebtns[j]) return 1;
-        else return 0;
+      if (activebtns[j]) return 1;
+      else return 0;
+      } ////////////////////
   } return 1;
 }
 
