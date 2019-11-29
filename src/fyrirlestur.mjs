@@ -6,7 +6,6 @@ if (document.readyState !== 'loading') {
   myInitCode();
 } //else {
 
-
 export function getKlaradirFyrirlestrar() {
   return klaradirFyrirlestrar;
 }
@@ -29,8 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
 function load() {
   const page = document.querySelector('body');
   const isLecturePage = page.classList.contains('lecture-page');
+  let fyrirlesturNumer;
   // event.preventDefault();
-  let fyrirlesturNumer = localStorage.getItem('rrr');
+  fyrirlesturNumer = localStorage.getItem('lecNo');
   //console.log('Load Func\n\n' + fyrirlesturNumer);
 
   fetch('lectures.json')
@@ -44,21 +44,12 @@ function load() {
     .catch(error => console.error(error));
 }
 
-let lectures;
 function getdata(dataArray, fyrirlesturNumer) {
-  lectures = dataArray;
-  for (
-    let j = 0;
-    j < 13;
-    j++ //console.log(dataArray[j]);
-  )
-    prof(dataArray);
-
+  console.log(dataArray);
+  console.log(fyrirlesturNumer);
   buaTilFyrirlestur(dataArray[fyrirlesturNumer]);
 }
-function prof(lectures) {
-  //console.log(lectures[5]);
-}
+
 // helper function for preparing elements
 function el(name, ...children) {
   const element = document.createElement(name);
@@ -75,7 +66,6 @@ function el(name, ...children) {
 //  Hérna búum við til fyrirlestur
 function buaTilFyrirlestur(lectures, i) {
   let main = document.getElementsByClassName('fyrirlestur')[0];
-  // main.classList.add('fyrirlestur');
   let fLesturLengd = lectures.content.length;
 
   // Loop'um í gegnum allt contentið
@@ -158,33 +148,23 @@ function fyrirlesturHeader(lectures, i) {
 
 function buaTilTakkaNedst(i) {
   //  Búa til takkana
+  let buinn = JSON.parse(localStorage.getItem('lecDone'));
   let main = document.getElementsByClassName('fyrirlestur')[0];
   let klaraFyrirlestur = el('p');
   let tilBaka = el('p');
-  klaraFyrirlestur.innerHTML = 'Klára fyrirlestur';
-  tilBaka.innerHTML = 'Til baka';
+  if (buinn[i]) {
+    klaraFyrirlestur.innerHTML = '✓ Fyrirlestur kláraður';
+    klaraFyrirlestur.style.color = '#2d2';
+  } else klaraFyrirlestur.innerHTML = 'Klára fyrirlestur';
   klaraFyrirlestur.classList.add('takki', 'klara__fyrirlestur');
+
+  tilBaka.innerHTML = 'Til baka';
   tilBaka.classList.add('takki', 'til__baka');
   let takkar = el('div', klaraFyrirlestur, tilBaka);
   takkar.classList.add('takkar');
   main.appendChild(takkar);
   //  Setja eventListiner á þá
-  klaraFyrirlestur.addEventListener('click', () => {
-    klaraFyrirlestur.innerHTML = '✓ Fyrirlestur kláraður';
-    klaraFyrirlestur.style.color = '#2d2';
-    let fyrirlesturNumer = localStorage.getItem('rrr');
-
-    let buinn = JSON.parse(localStorage.getItem('foo'));
-    console.log(buinn);
-    buinn[fyrirlesturNumer] = buinn[fyrirlesturNumer] ? 0 : 1;
- console.log(buinn);
-    localStorage.setItem('foo',JSON.stringify(buinn));
-
-
-    //console.log('\n\n\n\n\n\n');
-    //console.log(klaradirFyrirlestrar);
-    //  *Merkja fyrirlesturinn sem kláraðann
-  });
+  klaraFyrirlestur.addEventListener('click', checked(klaraFyrirlestur));
   tilBaka.addEventListener(
     'click',
     function() {
@@ -193,4 +173,15 @@ function buaTilTakkaNedst(i) {
     },
     false
   );
+}
+
+function checked(klaraFyrirlestur) {
+  klaraFyrirlestur.innerHTML = '✓ Fyrirlestur kláraður';
+  klaraFyrirlestur.style.color = '#2d2';
+  let fyrirlesturNumer = localStorage.getItem('lecNo');
+  let buinn = JSON.parse(localStorage.getItem('lecDone'));
+  console.log(buinn);
+  buinn[fyrirlesturNumer] = buinn[fyrirlesturNumer] ? 0 : 1;
+  console.log(buinn);
+  localStorage.setItem('lecDone', JSON.stringify(buinn));
 }

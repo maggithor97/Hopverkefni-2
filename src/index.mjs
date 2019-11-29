@@ -10,8 +10,7 @@ let htmlbtn, cssbtn, jsbtn, hreflink;
 let button = [
   (htmlbtn = document.getElementById('htmlbtn')),
   (cssbtn = document.getElementById('cssbtn')),
-  (jsbtn = document.getElementById('jsbtn')),
-  (hreflink = document.getElementById('foo'))
+  (jsbtn = document.getElementById('jsbtn'))
 ];
 //console.log(button);
 
@@ -19,31 +18,15 @@ let button = [
 let fyrirlesturNumer = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
- // load();
- // setfylki(); ////////////
+  load();
+  console.log("bar");
+ // setfylki(); // Blanda saman English and Íslensku
 });
+
 function load() {
   const page = document.querySelector('body');
   const isLecturePage = page.classList.contains('lecture-page');
   event.preventDefault();
-
-  if (isLecturePage) {
-    //console.log('it is lecture page');
-    buaTilFyrirlestur(5);
-    return;
-    // if (isLecturePage) {
-    //  Fetchar og lætur búa til fyrirlesturs síðu
-    fetch('lectures.json')
-      .then(result => {
-        if (!result.ok) {
-          throw new Error('Non 200 status');
-        }
-        return result.json();
-      })
-      .then(data => buaTilFyrirlestur(data, fyrirlesturNumer))
-      .catch(error => console.error(error));
-  } else {
-
     addListenerBtn();
 
     //  Fetchar og lætur búa til index síðu
@@ -56,28 +39,23 @@ function load() {
       })
       .then(data => getdata(data))
       .catch(error => console.error(error));
-    addListenerBtn();
-  }
 }
 
 function getdata(dataArray) {
   lectures = dataArray.lectures;
   localStorage.setItem('dataLectures', JSON.stringify(dataArray));
-  ////console.log("1\n"+JSON.stringify(localStorage.getItem('dataLectures')));
-  //console.log('2\n' + dataArray);
-  // //console.log('3\n' + localStorage.getItem('dataLectures'));
+  setfylki(dataArray.lectures.length);
   buaTilForsidu();
 }
 
 //  Hérna búum við til forsíðuna
 function buaTilForsidu() {
-  let card, image, img, box, h4, h1, flag;
+  let card, image, img, box, box2,box3, h4, h1, checked, flag;
   const container = document.querySelector('.container');
+  let fylki = JSON.parse(localStorage.getItem('lecDone'));
   container.innerHTML = ''; // Clearing the html from previous call
   for (let i = 0; i < lectures.length; flag = 0, i++) {
-    //console.log(lectures[i]);
-    //console.log(lectures[i].content.length);
-    flag = isrelevant(i);
+    flag = isrelevant(i); // Marks relevance of card
 
     if (!flag) continue;
     img = el('img');
@@ -91,19 +69,27 @@ function buaTilForsidu() {
     h4 = el('h4', lectures[i].category);
     h1 = el('h1', lectures[i].title);
     box = el('div', h4, h1);
-    box.classList.add('index__card__bottom');
+    box.classList.add('text__left');
 
-    card = el('div', image, box);
-    card.classList.add('card');
+    checked = el('p', '✓');
+    box2 = el('div',checked);
+    flag = fylki[i] ? 'checked' : 'unchecked';
+    box2.classList.add(flag);
+
+    box3 = el('div', box, box2);
+
+    card = el('div', image, box3);
+    flag = fylki[i] ? 'card2' : 'card';
+    card.classList.add(flag);
     container.appendChild(card);
     card.addEventListener(
       'click',
       function() {
         //console.log('listener card\n\n' + i + '\n\n');
-        localStorage.setItem('rrr', i);
-        location.href = 'fyrirlestur.html';
-
-        //        buaTilFyrirlestur(lectures, i);
+        localStorage.setItem('lecNo', i);
+        console.log(i);
+console.log(localStorage.getItem('lecNo'));
+       location.href = 'fyrirlestur.html';
       },
       false
     );
@@ -130,7 +116,7 @@ function isrelevant(i) {
   const category = ['html', 'css', 'javascript'];
   var totalActiveBtns = activebtns.reduce((a, b) => a + b);
   if (totalActiveBtns === 1 || totalActiveBtns === 2) {
-    for (let j = 0; j < 3; j++)
+    for (let j = 0; j < activebtns.length; j++)
       if (lectures[i].category === category[j])
         if (activebtns[j]) return 1;
         else return 0;
@@ -139,8 +125,7 @@ function isrelevant(i) {
 
 // add event listeners for the buttons
 function addListenerBtn() {
-  /////////////////////////////////////////////
-  for (let i = 0; i < 4; i++)
+  for (let i = 0; i < button.length; i++)
     button[i].addEventListener(
       'click',
       function() {
@@ -152,7 +137,7 @@ function addListenerBtn() {
 // set button active color on/off
 function clickHandler(btntype) {
   activebtns[btntype] = activebtns[btntype] === 1 ? 0 : 1;
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < activebtns.length; i++) {
     if (activebtns[i] === 1) {
       if (!button[i].classList.contains('btn__active'))
         button[i].classList.add('btn__active');
@@ -162,27 +147,24 @@ function clickHandler(btntype) {
     }
   }
   buaTilForsidu();
-  if (btntype === 3) p = 8;
 }
 
-let rrr = 1;
+/*let rrr = 1;
 window.onload = function() {
   var getInput = rrr;
-  localStorage.setItem('rrr', getInput);
-};
+  localStorage.setItem('lecNo', getInput);
+};*/
 
-function setfylki() {
-  let bar,
+function setfylki(len) {
+  let existcheck,
     fylki = [];
-  bar = JSON.parse(localStorage.getItem('foo'));
-  if (!window.localStorage.foo) {
-    console.log("blablabla");
-    for (let j = 0; j < 13; j++) {
-      debugger;
+  existcheck = JSON.parse(localStorage.getItem('lecDone'));
+  if (!window.localStorage.lecDone) {
+    for (let j = 0; j < len; j++) {
       fylki[j] = 0;
   console.log(fylki);
-  localStorage.setItem('foo', JSON.stringify(fylki));
+  localStorage.setItem('lecDone', JSON.stringify(fylki));
     }
   }
-  console.log(bar);
+  console.log(existcheck);
 }
