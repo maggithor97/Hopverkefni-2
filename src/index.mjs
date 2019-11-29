@@ -1,5 +1,3 @@
-/* eslint-disable linebreak-style */
-
 // Global variables to be used by more than 1 function:
 // 1. indicates active buttons, used by more than 1 function
 // eslint-disable-next-line prefer-const
@@ -60,7 +58,6 @@ function buaTilForsidu() {
       card.addEventListener(
         'click',
         () => {
-          // console.log('listener card\n\n' + i + '\n\n');
           localStorage.setItem('lecNo', i);
           location.href = 'fyrirlestur.html';
         },

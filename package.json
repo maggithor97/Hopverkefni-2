@@ -1,27 +1,27 @@
 {
-  "name": "verkefni2",
+  "name": "h2",
   "version": "1.0.0",
   "description": "h2",
-  "main": "index.mjs",
+  "main": "index.js",
   "scripts": {
     "eslint": "eslint ./src/**/*.mjs",
     "browser-sync": "browser-sync start --server --files index.html fyrirlestur.html ./dist/styles.css ./dist/bundle.js",
-    "rollup": "rollup -c",
-    "rollup-watch": "rollup -c -w",
     "stylelint": "stylelint ./src/styles/**/*.scss --syntax scss",
     "sass": "node-sass --source-map-embed ./src/styles/styles.scss ./dist/styles.css",
     "sass-watch": "node-sass --source-map-embed --watch --recursive src/styles/styles.scss ./dist/styles.css",
     "test": "npm-run-all eslint stylelint",
-    "dev": "npm-run-all --parallel sass sass-watch browser-sync rollup-watch"
+    "dev": "npm-run-all --parallel sass sass-watch browser-sync rollup-watch",
+    "babel": "babel src --out-dir dist",
+    "babel-watch": "babel src --out-dir dist --watch",
+    "rollup-watch": "rollup -c -w"
   },
   "keywords": [],
-  "author": "Maggi, Oren",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.7.4",
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
-    "@babel/preset-react": "^7.7.4",
     "browser-sync": "^2.26.7",
     "eslint": "^6.7.1",
     "eslint-config-airbnb-base": "^14.0.0",
@@ -34,10 +34,7 @@
     "stylelint": "^9.10.1",
     "stylelint-config-primer": "^2.2.11"
   },
-  "dependencies": {
-    "eslint-config-airbnb": "^18.0.1",
-    "milsymbol": "^2.0.0"
-  },
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/maggithor97/Hopverkefni-2.git"
