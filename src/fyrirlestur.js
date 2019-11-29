@@ -88,14 +88,12 @@ function fyrirlesturHeader(lectures) {
 
 //  Breytir takkanum "Klára fyrirlestur"
 function checked(klaraFyrirlestur) {
-  const klara = klaraFyrirlestur;
-  klara.innerHTML = '✓ Fyrirlestur kláraður';
-  klara.style.color = '#2d2';
+  klaraFyrirlestur.innerHTML = '✓ Fyrirlestur kláraður';
+  klaraFyrirlestur.style.color = '#2d2';
   const fyrirlesturNumer = localStorage.getItem('lecNo');
   const buinn = JSON.parse(localStorage.getItem('lecDone'));
   buinn[fyrirlesturNumer] = buinn[fyrirlesturNumer] ? 0 : 1;
   localStorage.setItem('lecDone', JSON.stringify(buinn));
-  return klara;
 }
 
 //  Býr til takkana "Klára fyrirlestur" og "Til baka" neðst á síðu
