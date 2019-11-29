@@ -1,5 +1,5 @@
-//import { klaradirFyrirlestrar  as old} from './fyrirlestur.mjs';
-//console.log(old);
+/* eslint-disable linebreak-style */
+
 // Global variables to be used by more than 1 function:
 // 1. indicates active buttons, used by more than 1 function
 let activebtns = [0, 0, 0];
@@ -20,25 +20,25 @@ let fyrirlesturNumer = 0;
 document.addEventListener('DOMContentLoaded', () => {
   load();
   console.log("bar");
- // setfylki(); // Blanda saman English and Íslensku
+  // setfylki(); // Blanda saman English and Íslensku
 });
 
 function load() {
   const page = document.querySelector('body');
   const isLecturePage = page.classList.contains('lecture-page');
   event.preventDefault();
-    addListenerBtn();
+  addListenerBtn();
 
-    //  Fetchar og lætur búa til index síðu
-    fetch('lectures.json')
-      .then(result => {
-        if (!result.ok) {
-          throw new Error('Non 200 status');
-        }
-        return result.json();
-      })
-      .then(data => getdata(data))
-      .catch(error => console.error(error));
+  //  Fetchar og lætur búa til index síðu
+  fetch('lectures.json')
+    .then(result => {
+      if (!result.ok) {
+        throw new Error('Non 200 status');
+      }
+      return result.json();
+    })
+    .then(data => getdata(data))
+    .catch(error => console.error(error));
 }
 
 function getdata(dataArray) {
@@ -50,7 +50,7 @@ function getdata(dataArray) {
 
 //  Hérna búum við til forsíðuna
 function buaTilForsidu() {
-  let card, image, img, box, box2,box3, h4, h1, checked, flag;
+  let card, image, img, box, box2, box3, h4, h1, checked, flag;
   const container = document.querySelector('.container');
   let fylki = JSON.parse(localStorage.getItem('lecDone'));
   container.innerHTML = ''; // Clearing the html from previous call
@@ -72,7 +72,7 @@ function buaTilForsidu() {
     box.classList.add('text__left');
 
     checked = el('p', '✓');
-    box2 = el('div',checked);
+    box2 = el('div', checked);
     flag = fylki[i] ? 'checked' : 'unchecked';
     box2.classList.add(flag);
 
@@ -84,12 +84,12 @@ function buaTilForsidu() {
     container.appendChild(card);
     card.addEventListener(
       'click',
-      function() {
+      function () {
         //console.log('listener card\n\n' + i + '\n\n');
         localStorage.setItem('lecNo', i);
         console.log(i);
-console.log(localStorage.getItem('lecNo'));
-       location.href = 'fyrirlestur.html';
+        console.log(localStorage.getItem('lecNo'));
+        location.href = 'fyrirlestur.html';
       },
       false
     );
@@ -128,7 +128,7 @@ function addListenerBtn() {
   for (let i = 0; i < button.length; i++)
     button[i].addEventListener(
       'click',
-      function() {
+      function () {
         clickHandler(i);
       },
       false
@@ -149,12 +149,6 @@ function clickHandler(btntype) {
   buaTilForsidu();
 }
 
-/*let rrr = 1;
-window.onload = function() {
-  var getInput = rrr;
-  localStorage.setItem('lecNo', getInput);
-};*/
-
 function setfylki(len) {
   let existcheck,
     fylki = [];
@@ -162,8 +156,8 @@ function setfylki(len) {
   if (!window.localStorage.lecDone) {
     for (let j = 0; j < len; j++) {
       fylki[j] = 0;
-  console.log(fylki);
-  localStorage.setItem('lecDone', JSON.stringify(fylki));
+      console.log(fylki);
+      localStorage.setItem('lecDone', JSON.stringify(fylki));
     }
   }
   console.log(existcheck);

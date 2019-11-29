@@ -1,18 +1,19 @@
 # Hópverkefni 2
 
-Upplýsingar um hvernig skal keyra verkefnið:
+##### Upplýsingar um hvernig skal keyra verkefnið:
 
-* Step
-* Step
-* Step
+* Opna möppu í command prompt
+* **Step 1:** npm install
+* **Step 2:** npm run dev
 
-Uppsetning verkefnis:
+##### Uppsetning verkefnis:
 `index.html` skjalið inniheldur aðeins 3 `button` tög fyrir html,css og js. Restin af index síðunni er sett upp með `index.js` sem fetchar upplýsingar frá `lectures.json`. Þegar ýtt er á einhvern fyrirlestur þá er load'að þeim fyrirlestri í `fyrirlestur.js` sem tekur gögn frá `lectures.json` og býr til ný element til að setja í `fyrirlestur.html`. Notað er localstorage til að flytja upplýsingar á milli javaScript file'anna.
 Fyrir virkni á `index.html` er notað `index.js` og fyrir útlit er notað `styles.scss`.
 Fyrir virkni á `fyrirlestur.html` er notað `fyrirlestur.js` og fyrir útlit er `fyrirlestur.scss`.
 Öll virkni `scss` skjölum eru færð yfir í `styles.css` með því að nota `sass`.
+Ath. Vegna misskilnings þá var gert thumbnail á hverjum fyrirlestri í forsíðu gráan þegar var hover'að yfir hann. Við héldum þessari óþarfa virkni því okkur fannst þetta flott og þetta tók leiðinlega mikinn tíma... 
 
-Þeir sem unnu við þetta verkefni eru þeir [Magnús Þór](http://eelslap.com/) og [Oren Raz](http://corndogoncorndog.com/).
+Þeir sem unnu við þetta verkefni eru þeir **[Magnús Þór](http://eelslap.com/)** og **[Oren Raz](http://corndogoncorndog.com/)**.
 
 Verkefnið felst í því að smíða prótótýpu af fyrirlestravef fyrir vefforritun. Gefin eru gögn sem unnin eru uppúr námsefni vetrarins.
 
