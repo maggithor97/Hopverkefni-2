@@ -68,7 +68,6 @@ function buaTilFyrirlestur(lectures) {
     element.classList.add('fyrirlestur__div');
     main.appendChild(element);
   }
-  //  Takkar neðst á síðunni
 }
 
 //  Setur mynd í header á fyrirlestrinum
@@ -87,6 +86,7 @@ function fyrirlesturHeader(lectures) {
   hausTextar[0].innerHTML = lectures.title;
 }
 
+//  Breytir takkanum "Klára fyrirlestur"
 function checked(klaraFyrirlestur) {
   klaraFyrirlestur.innerHTML = '✓ Fyrirlestur kláraður';
   klaraFyrirlestur.style.color = '#2d2';
@@ -96,6 +96,7 @@ function checked(klaraFyrirlestur) {
   localStorage.setItem('lecDone', JSON.stringify(buinn));
 }
 
+//  Býr til takkana "Klára fyrirlestur" og "Til baka" neðst á síðu
 function buaTilTakkaNedst(i) {
   //  Búa til takkana
   const buinn = JSON.parse(localStorage.getItem('lecDone'));
@@ -127,11 +128,14 @@ function buaTilTakkaNedst(i) {
   );
 }
 
+//  Kallar á nokkur föll til að gera síðu
 function getdata(dataArray, fyrirlesturNumer) {
   fyrirlesturHeader(dataArray[fyrirlesturNumer]);
   buaTilFyrirlestur(dataArray[fyrirlesturNumer]);
   buaTilTakkaNedst(fyrirlesturNumer);
 }
+
+//  Fetchar upplýsingar frá lectures.json þegar síða load'ast
 document.addEventListener('DOMContentLoaded', () => {
   let fyrirlesturNumer = localStorage.getItem('lecNo'); // eslint-disable-line
 
