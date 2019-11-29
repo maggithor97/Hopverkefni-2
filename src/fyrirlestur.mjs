@@ -1,29 +1,6 @@
-if (document.readyState !== 'loading') {
-  //console.log('document is already ready, just execute code here');
-
-  load();
-  //console.log('fyrirlestur load listener');
-  myInitCode();
-} //else {
-
-export function getKlaradirFyrirlestrar() {
-  return klaradirFyrirlestrar;
-}
-
 function myInitCode() {}
 
-document.addEventListener('DOMContentLoaded', () => {
-  //console.log('document is already ready, just execute code here');
-
-  load();
-  //console.log('DOM listener');
-  /*
-  let arrIndex = localStorage.getItem('dataLectures');
-  //console.log(arrIndex);
-  buaTilFyrirlestur(arrIndex);
-  //console.log('fyrirlestur load listener');
-*/
-});
+document.addEventListener('DOMContentLoaded', load());
 
 function load() {
   const page = document.querySelector('body');
@@ -47,7 +24,9 @@ function load() {
 function getdata(dataArray, fyrirlesturNumer) {
   console.log(dataArray);
   console.log(fyrirlesturNumer);
+  fyrirlesturHeader(dataArray[fyrirlesturNumer]);
   buaTilFyrirlestur(dataArray[fyrirlesturNumer]);
+  buaTilTakkaNedst(fyrirlesturNumer);
 }
 
 // helper function for preparing elements
@@ -121,17 +100,10 @@ function buaTilFyrirlestur(lectures, i) {
     main.appendChild(element);
   }
   //  Takkar neðst á síðunni
-  buaTilTakkaNedst(i);
-}
-
-//  Hreinsar síðuna
-function hreinsaSidu() {
-  var e = document.getElementById('adal');
-  e.classList.add('clear');
 }
 
 //  Setur mynd í header á fyrirlestrinum
-function fyrirlesturHeader(lectures, i) {
+function fyrirlesturHeader(lectures) {
   let hausMynd = 'url("' + lectures.image + '")';
   //console.log(lectures.image);
   let header = document.getElementById('header');
@@ -141,9 +113,10 @@ function fyrirlesturHeader(lectures, i) {
     header.style.backgroundColor = '#999';
   }
   //  Setur réttan texta í haus
-  let hausTextar = document.getElementsByClassName('header__h');
+  let hausTextar = document.getElementsByClassName('header__h4');
   hausTextar[0].innerHTML = lectures.slug;
-  hausTextar[1].innerHTML = lectures.title;
+  hausTextar = document.getElementsByClassName('header__h1');
+  hausTextar[0].innerHTML = lectures.title;
 }
 
 function buaTilTakkaNedst(i) {
@@ -155,8 +128,11 @@ function buaTilTakkaNedst(i) {
   if (buinn[i]) {
     klaraFyrirlestur.innerHTML = '✓ Fyrirlestur kláraður';
     klaraFyrirlestur.style.color = '#2d2';
-  } else klaraFyrirlestur.innerHTML = 'Klára fyrirlestur';
+  } else {
+    klaraFyrirlestur.innerHTML = 'Klára fyrirlestur';
+  }
   klaraFyrirlestur.classList.add('takki', 'klara__fyrirlestur');
+  klaraFyrirlestur.style.cursor = 'pointer';
 
   tilBaka.innerHTML = 'Til baka';
   tilBaka.classList.add('takki', 'til__baka');
@@ -164,7 +140,7 @@ function buaTilTakkaNedst(i) {
   takkar.classList.add('takkar');
   main.appendChild(takkar);
   //  Setja eventListiner á þá
-  klaraFyrirlestur.addEventListener('click', checked(klaraFyrirlestur));
+  klaraFyrirlestur.addEventListener('click', () => checked(klaraFyrirlestur));
   tilBaka.addEventListener(
     'click',
     function() {
@@ -176,12 +152,13 @@ function buaTilTakkaNedst(i) {
 }
 
 function checked(klaraFyrirlestur) {
-  klaraFyrirlestur.innerHTML = '✓ Fyrirlestur kláraður';
-  klaraFyrirlestur.style.color = '#2d2';
-  let fyrirlesturNumer = localStorage.getItem('lecNo');
-  let buinn = JSON.parse(localStorage.getItem('lecDone'));
-  console.log(buinn);
-  buinn[fyrirlesturNumer] = buinn[fyrirlesturNumer] ? 0 : 1;
-  console.log(buinn);
-  localStorage.setItem('lecDone', JSON.stringify(buinn));
-}
+    klaraFyrirlestur.innerHTML = '✓ Fyrirlestur kláraður';
+    klaraFyrirlestur.style.color = '#2d2';
+    let fyrirlesturNumer = localStorage.getItem('lecNo');
+    let buinn = JSON.parse(localStorage.getItem('lecDone'));
+    console.log(buinn);
+    buinn[fyrirlesturNumer] = buinn[fyrirlesturNumer] ? 0 : 1;
+    console.log(buinn);
+    localStorage.setItem('lecDone', JSON.stringify(buinn));
+  }
+
