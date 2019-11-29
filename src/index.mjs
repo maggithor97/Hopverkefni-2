@@ -89,8 +89,7 @@ function isrelevant(i) {
   const category = ['html', 'css', 'javascript'];
   const totalActiveBtns = activebtns.reduce((a, b) => a + b);
   if (totalActiveBtns === 1 || totalActiveBtns === 2) {
-    for (let j = 0; j < activebtns.length; j++)
-      if (lectures[i].category === category[j])
+    for (let j = 0; j < activebtns.length; j++) {if (lectures[i].category === category[j])
         if (activebtns[j]) return 1;
         else return 0;
   } return 1;
@@ -98,14 +97,13 @@ function isrelevant(i) {
 
 //  add event listeners for the buttons
 function addListenerBtn() {
-  for (let i = 0; i < button.length; i++)
-    button[i].addEventListener(
+  for (let i = 0; i < button.length; i++) {button[i].addEventListener(
       'click',
       () => {
         clickHandler(i);
       },
       false
-    );
+    );}
 }
 //  set button active color on/off
 function clickHandler(btntype) {
