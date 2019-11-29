@@ -87,7 +87,7 @@ function buaTilForsidu() {
     })
     for(let x = 0; x < klaradirFyrirlestrar.length; x++){
       if(klaradirFyrirlestrar[x]=i){
-        box.innerHTML = 'Kláradur';
+        box.innerHTML = 'Kláraður';
       }
     }
   }
@@ -152,6 +152,7 @@ function clickHandler(btntype) {
 
 //  Hérna búum við til fyrirlestur
 function buaTilFyrirlestur(lectures, i) {
+
   //  Hreinsum núverandi síðu
   hreinsaSidu();
   //  Setjum rétta mynd og texta í header
@@ -274,6 +275,7 @@ function buaTilTakkaNedst(i) {
       e.classList.remove('clear');
       var b = document.getElementById('fyrirlestur');
       b.innerHTML = '';
+
     }
   )
 }

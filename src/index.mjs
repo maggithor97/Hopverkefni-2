@@ -30,7 +30,7 @@ function load() {
 
   if (isLecturePage) {
     console.log('it is lecture page');
-    buaTilFyrirlestur(5);
+   // buaTilFyrirlestur(5);
     return;
     // if (isLecturePage) {
     //  Fetchar og lætur búa til fyrirlesturs síðu

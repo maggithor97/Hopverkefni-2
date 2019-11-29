@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function buaTilFyrirlestur(lectures) {
   console.log(lectures);
-  console.log(lectures.content.length);
+  //console.log(lectures.content.length);
   //document.location.href = 'fyrirlestur.html';
 
   //  testa
@@ -107,7 +107,7 @@ function load() {
       .catch(error => console.error(error));
   } else {
 
-    addListenerBtn();
+    //addListenerBtn();
 
     //  Fetchar og lætur búa til index síðu
     fetch('lectures.json')
@@ -119,7 +119,7 @@ function load() {
       })
       .then(data => getdata(data))
       .catch(error => console.error(error));
-    addListenerBtn();
+    //addListenerBtn();
   }
 }
 
