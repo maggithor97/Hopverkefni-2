@@ -11,8 +11,9 @@ $green2: #1a1;
 $strangeColor: #cc9694;
 //  Litir
 //  Fonts
-//$mainFont:
+$mainFont: 'Times New Roman', Times, serif;
 $codeFont: monospace;
+
 
 .header__fyrirlestur {
   background-image: url("../img/code.jpg");
@@ -28,10 +29,12 @@ $codeFont: monospace;
 }
 
 .fyrirlestur {
+  font-family: $mainFont;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   padding: 0 calc(100% / 12);
+  white-space: pre-wrap;
 }
 @media (min-width: 500px) {
   .fyrirlestur {
@@ -73,6 +76,7 @@ $codeFont: monospace;
   padding-bottom: 56.25%; /* 16:9 */
   height: 0;
 }
+
 
 .fyrirlestur__quote {
   background-color: $grey2;

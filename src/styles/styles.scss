@@ -1,7 +1,8 @@
 @import "config";
 @import "fyrirlestur";
 $page: 1200px;
-$index-font: "Courier New", Courier, monospace;
+$header-font: "Courier New", Courier, monospace;
+$index-font: 'Times New Roman', Times, serif;
 $white: #fcffd2;
 $grey: #ccc;
 $grey2: #aaa;
@@ -41,6 +42,7 @@ main {
 }
 
 .header {
+  font-family: $header-font;
   background-image: url("../img/header.jpg");
   font-size: 2rem;
   min-height: 30vh;
